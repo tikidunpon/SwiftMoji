@@ -14,6 +14,34 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B7D5FF9D4A626E994BEF2D03767CCD32"
+               BuildableName = "Pods_SwiftMoji_Tests.framework"
+               BlueprintName = "Pods-SwiftMoji_Tests"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DBE8357E89F636A723F867B9AC46D0B8"
+               BuildableName = "Pods_SwiftMoji_Example.framework"
+               BlueprintName = "Pods-SwiftMoji_Example"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "D465375A8EC64A53F0D90E47611E925A"
                BuildableName = "SwiftMoji.framework"
                BlueprintName = "SwiftMoji"
@@ -46,34 +74,6 @@
                BuildableName = "SwiftMoji_Tests.xctest"
                BlueprintName = "SwiftMoji_Tests"
                ReferencedContainer = "container:SwiftMoji.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B7D5FF9D4A626E994BEF2D03767CCD32"
-               BuildableName = "Pods_SwiftMoji_Tests.framework"
-               BlueprintName = "Pods-SwiftMoji_Tests"
-               ReferencedContainer = "container:Pods/Pods.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DBE8357E89F636A723F867B9AC46D0B8"
-               BuildableName = "Pods_SwiftMoji_Example.framework"
-               BlueprintName = "Pods-SwiftMoji_Example"
-               ReferencedContainer = "container:Pods/Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
