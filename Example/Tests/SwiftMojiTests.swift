@@ -33,7 +33,7 @@ class SwiftMojiTests: XCTestCase {
         XCTAssert(" ".last() == " ")
         XCTAssert("".last() == "")
     }
-
+    
     func testUppercasedFirst() {
         XCTAssertTrue("abc".uppercasedFirst() == "Abc")
         XCTAssertTrue("a".uppercasedFirst() == "A")
