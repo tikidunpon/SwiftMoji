@@ -1,0 +1,12 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+target 'SwiftMoji_Example', :exclusive => true do
+  pod 'SwiftMoji', :path => '../'
+end
+
+target 'SwiftMoji_Tests', :exclusive => true do
+  pod 'SwiftMoji', :path => '../'
+
+  
+end
