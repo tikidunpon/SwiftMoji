@@ -9,6 +9,24 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+
+## Methods
+
+**first()**
+```swift
+"abc".first() // "a"
+```
+
+**last()**
+```swift
+"abc".last() // "e"
+```
+
+**uppercasedFirst()**
+```swift
+"abc".uppercasedFirst() // "Abc"
+```
+
 ## Requirements
 
 ## Installation
