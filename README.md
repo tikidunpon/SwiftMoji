@@ -1,9 +1,9 @@
 # SwiftMoji
 
-[![CI Status](http://img.shields.io/travis/koichi/SwiftMoji.svg?style=flat)](https://travis-ci.org/koichi/SwiftMoji)
+[![CI Status](http://img.shields.io/travis/tikidunpon/SwiftMoji.svg?style=flat)](https://travis-ci.org/tikidunpon/SwiftMoji)
 [![Version](https://img.shields.io/cocoapods/v/SwiftMoji.svg?style=flat)](http://cocoapods.org/pods/SwiftMoji)
 [![License](https://img.shields.io/cocoapods/l/SwiftMoji.svg?style=flat)](http://cocoapods.org/pods/SwiftMoji)
-[![Platform](https://img.shields.io/cocoapods/p/SwiftMoji.svg?style=flat)](http://cocoapods.org/pods/SwiftMoji)
+[![Swift-2.2](http://img.shields.io/badge/Swift-2.2-blue.svg)]()
 
 ## Usage
 
@@ -22,7 +22,7 @@ pod "SwiftMoji"
 
 ## Author
 
-koichi, tanakakoichi256@gmail.com
+tikidunpon, https://twitter.com/tikidunpon
 
 ## License
 
