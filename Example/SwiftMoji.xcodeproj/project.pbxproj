@@ -14,7 +14,6 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		6A6B8A175AEE13F268ACED28 /* Pods_SwiftMoji_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC0FA9FBCDF2278A7E6C16B6 /* Pods_SwiftMoji_Example.framework */; };
-		6BF236091CBF4D1C003857F5 /* SwiftMojiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF236081CBF4D1C003857F5 /* SwiftMojiTests.swift */; };
 		6BF2360C1CBF52E4003857F5 /* SwiftMojiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF236081CBF4D1C003857F5 /* SwiftMojiTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -360,7 +359,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6BF236091CBF4D1C003857F5 /* SwiftMojiTests.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
@@ -516,6 +514,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 17F4663685D045DB9D80FA0C /* Pods-SwiftMoji_Tests.debug.xcconfig */;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -528,6 +527,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftMoji_Example.app/SwiftMoji_Example";
 			};
 			name = Debug;
 		};
@@ -535,6 +535,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A5AC3F5255DBE336291CCFB6 /* Pods-SwiftMoji_Tests.release.xcconfig */;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -543,6 +544,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftMoji_Example.app/SwiftMoji_Example";
 			};
 			name = Release;
 		};
