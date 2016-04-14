@@ -15,5 +15,5 @@ before_install:
 script:
   - pod lib lint
   - set -o pipefail
-  - xcodebuild clean build -workspace Example/SwiftMoji.xcworkspace -scheme SwiftMoji-Example | xcpretty
+  - xcodebuild clean build -workspace Example/SwiftMoji.xcworkspace -scheme SwiftMoji-Example -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 6s" | xcpretty
   - xcodebuild test -workspace Example/SwiftMoji.xcworkspace -scheme SwiftMoji-Example -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 6s" | xcpretty
