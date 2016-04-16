@@ -13,6 +13,9 @@
 		3F9157814623B0F216D3424A5E3421B3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
 		4AC300312B87CFE3E6BA0482CA2239DE /* Pods-SwiftMoji_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 116FD5B0A9B8EBC921DAC5855D2A37A8 /* Pods-SwiftMoji_Example-dummy.m */; };
 		5C0F59F2C9979C12B6651194E40686E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
+		6BB65D1A1CC2F81900163774 /* SwiftMoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040DA4695BCF4744B21D9ED3CDF3A55 /* SwiftMoji.swift */; };
+		6BB65D1B1CC2F81A00163774 /* SwiftMoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040DA4695BCF4744B21D9ED3CDF3A55 /* SwiftMoji.swift */; };
+		6BB65D1C1CC2F81F00163774 /* SwiftMoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040DA4695BCF4744B21D9ED3CDF3A55 /* SwiftMoji.swift */; };
 		8203303C4A01E39D5C4FCDCDE2142D7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
 		AFF3A040D7C9B89866CEF8ECF9BBB2DC /* Pods-SwiftMoji_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 95980F58FEF2210F3386E3F73BC05BDB /* Pods-SwiftMoji_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CBD19A4280087A343BF22A871F9C966D /* SwiftMoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040DA4695BCF4744B21D9ED3CDF3A55 /* SwiftMoji.swift */; };
@@ -400,6 +403,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BB65D1C1CC2F81F00163774 /* SwiftMoji.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +411,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BB65D1A1CC2F81900163774 /* SwiftMoji.swift in Sources */,
 				EC6EC2B603FBC49322D626377B119328 /* Pods-SwiftMoji_Tests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,6 +420,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BB65D1B1CC2F81A00163774 /* SwiftMoji.swift in Sources */,
 				4AC300312B87CFE3E6BA0482CA2239DE /* Pods-SwiftMoji_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
