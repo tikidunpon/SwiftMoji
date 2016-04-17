@@ -1,6 +1,0 @@
-framework module SwiftMoji {
-  umbrella header "SwiftMoji-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -1,6 +1,0 @@
-framework module Pods_SwiftMoji_Tests {
-  umbrella header "Pods-SwiftMoji_Tests-umbrella.h"
-
-  export *
-  module * { export * }
-}
