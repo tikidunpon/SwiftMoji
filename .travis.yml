@@ -9,7 +9,10 @@ podfile: Example/Podfile
 xcode_sdk: iphonesimulator
 
 before_install:
+  - pod --version
+  - gem uninstall cocoapods -a
   - gem install cocoapods --pre # Since Travis is not always on latest version
+  - pod --version
   - pod install --project-directory=Example
 
 script:
