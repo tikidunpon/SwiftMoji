@@ -32,7 +32,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 "UserId".snakecased() // "user_id"
 ```
 
-**trimmed() trimmedLeft() trimmedRight() **
+**trimmed() trimmedLeft() trimmedRight()**
 ```swift
 "   abcdef   ".trimmed()      // "abcdef"
 "   abcdef   ".trimmedLeft()  // "abcdef   "
@@ -49,7 +49,60 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 "ABC".lowercasedFirst() // "aBC"
 ```
 
-## Requirements
+**isCapitalized()**
+```swift
+"Abc".isCapitalized() // "true"
+"abc".isCapitalized() // "false"
+```
+
+**isUppercased()**
+```swift
+"A_B_C".isUppercased() // "true"
+"aBc".isUppercased()   // "false"
+```
+
+**isOnlyUppercased()**
+```swift
+"ABC".isOnlyUppercased()   // "true"
+"A_B_C".isOnlyUppercased() // "false"
+```
+
+**isLowercased()**
+```swift
+"a_b_c".isLowercased() // "true"
+"abC".isLowercased()   // "false"
+```
+
+**isOnlyLowercased()**
+```swift
+"abc".isOnlyLowercased()   // "true"
+"a_b_c".isOnlyLowercased() // "false"
+```
+
+**isUpperCamelized()**
+```swift
+"UserId".isUpperCamelized() // "true"
+"userId".isUpperCamelized() // "false"
+```
+
+**isLowerCamelized()**
+```swift
+"userId".isLowerCamelized() // "true"
+"UserId".isLowerCamelized() // "false"
+```
+
+**isAlphabet()**
+```swift
+"abc".isAlphabet() // "true"
+"123".isAlphabet() // "false"
+"   ".isAlphabet() // "false"
+```
+
+**isNumeric()**
+```swift
+"-1.983388".isNumeric() // "true"
+"abc".isNumeric()       // "false"
+```
 
 ## Installation
 

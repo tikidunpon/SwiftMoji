@@ -41,6 +41,13 @@ class SwiftMojiTests: XCTestCase {
         XCTAssertTrue("ABC".uppercasedFirst() == "ABC")
     }
     
+    func testLowercasedFirst() {
+        XCTAssertTrue("ABC".lowercasedFirst() == "aBC")
+        XCTAssertTrue("abc".lowercasedFirst() == "abc")
+        XCTAssertTrue("A".lowercasedFirst()   == "a")
+        XCTAssertTrue("".lowercasedFirst()    == "")
+    }
+    
     func testIsCapitalized() {
         XCTAssertTrue("A".isCapitalized())
         XCTAssertTrue("Abc".isCapitalized())
