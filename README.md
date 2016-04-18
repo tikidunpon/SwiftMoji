@@ -19,12 +19,34 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 **last()**
 ```swift
-"abc".last() // "e"
+"abc".last() // "c"
+```
+
+**camelized()**
+```swift
+"abc_def".camelized() // "AbcDef"
+```  
+
+**snakecased()**
+```swift
+"UserId".snakecased() // "user_id"
+```
+
+**trimmed() trimmedLeft() trimmedRight() **
+```swift
+"   abcdef   ".trimmed()      // "abcdef"
+"   abcdef   ".trimmedLeft()  // "abcdef   "
+"   abcdef   ".trimmedRight() // "   abcdef"
 ```
 
 **uppercasedFirst()**
 ```swift
 "abc".uppercasedFirst() // "Abc"
+```
+
+**lowercasedFirst()**
+```swift
+"ABC".lowercasedFirst() // "aBC"
 ```
 
 ## Requirements

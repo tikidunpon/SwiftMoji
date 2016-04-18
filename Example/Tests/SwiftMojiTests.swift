@@ -178,11 +178,20 @@ class SwiftMojiTests: XCTestCase {
     }
     
     func testTrimmed() {
+        // trimmed
         XCTAssertTrue("   abcdef   ".trimmed()   == "abcdef")
         XCTAssertTrue("   abc  def   ".trimmed() == "abc  def")
         XCTAssertTrue("abc  def   ".trimmed()    == "abc  def")
         XCTAssertTrue("   abc  def".trimmed()    == "abc  def")
         XCTAssertTrue(" \n  abc \n \t def \n \t".trimmed() == "abc \n \t def")
+        
+        // trimmedLeft
+        XCTAssertTrue("   abcdef   ".trimmedLeft()   == "abcdef   ")
+        XCTAssertTrue("   abc  def   ".trimmedLeft() == "abc  def   ")
+        
+        // trimmedRight
+        XCTAssertTrue("   abcdef   ".trimmedRight()   == "   abcdef")
+        XCTAssertTrue("   abc  def".trimmedRight() == "   abc  def")
     }
     
     func testPerformanceExample() {
