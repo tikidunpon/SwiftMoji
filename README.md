@@ -17,6 +17,11 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 "abc".first() // "a"
 ```
 
+**second()**
+```swift
+"abc".second() // "b"
+```
+
 **last()**
 ```swift
 "abc".last() // "c"
