@@ -28,6 +28,14 @@ class SwiftMojiTests: XCTestCase {
         XCTAssert("".first() == "")
     }
     
+    func testSecond() {
+        XCTAssert("abc".second() == "b")
+        XCTAssert("ab".second() == "b")
+        XCTAssert("a".second() == "")
+        XCTAssert(" ".second() == "")
+        XCTAssert("".second() == "")
+    }
+    
     func testLast() {
         XCTAssert("abc".last() == "c")
         XCTAssert(" ".last() == " ")
@@ -201,11 +209,18 @@ class SwiftMojiTests: XCTestCase {
         XCTAssertTrue("   abc  def".trimmedRight() == "   abc  def")
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
+    func testIsOnlyUppercasedPerformance() {
         self.measureBlock {
-            for _ in 1..<10000 {
+            for _ in 0..<10000 {
                 "A_B_C".isOnlyUppercased()
+            }
+        }
+    }
+    
+    func testSnakecasedPerformance() {
+        self.measureBlock {
+            for _ in 0..<10000 {
+                "UserId".snakecased()
             }
         }
     }

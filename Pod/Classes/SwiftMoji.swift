@@ -45,6 +45,17 @@ public extension String {
         return String(self[self.startIndex])
     }
     
+    func second() -> String {
+        guard !self.isEmpty else { return self }
+        
+        let secondIndex = self.startIndex.successor()
+        let secondIndexInt = self.startIndex.distanceTo(secondIndex)
+        
+        guard self.characters.count > secondIndexInt else { return "" }
+        
+        return String(self[secondIndex])
+    }
+    
     /// Returns the last element of `self`, or `empty string` if `self` is empty
     func last() -> String {
         guard !self.isEmpty else { return self }
