@@ -42,6 +42,37 @@ class SwiftMojiTests: XCTestCase {
         XCTAssert("".last() == "")
     }
     
+    func testCamelized() {
+        XCTAssertTrue("abc_def".camelized() == "AbcDef")
+        XCTAssertTrue("Abc_def".camelized() == "AbcDef")
+        XCTAssertTrue("abc_def_ghi".camelized() == "AbcDefGhi")
+        XCTAssertTrue("abc-Def".camelized() == "AbcDef")
+        XCTAssertTrue("Abc-Def".camelized() == "AbcDef")
+        XCTAssertTrue("abc def ".camelized() == "AbcDef")
+        XCTAssertTrue("abc  def".camelized() == "AbcDef")
+        XCTAssertTrue("ABc-def_ghi jkl".camelized() == "AbcDefGhiJkl")
+        XCTAssertTrue("".camelized() == "")
+    }
+    
+    func testSnakecased() {
+        XCTAssertTrue("abcDef".snakecased() == "abc_def")
+        XCTAssertTrue("abcDefGhi".snakecased() == "abc_def_ghi")
+        XCTAssertTrue("abcDef-Ghi".snakecased() == "abc_def_ghi")
+        XCTAssertTrue("abc99Def-Ghi".snakecased() == "abc99_def_ghi")
+        XCTAssertTrue("abc99Def-Ghi99".snakecased() == "abc99_def_ghi99")
+        XCTAssertTrue("ABCDEFG".snakecased() == "abcdefg")
+        XCTAssertTrue("ABC_DEF".snakecased() == "abc_def")
+        XCTAssertTrue("ABC-DEF".snakecased() == "abc_def")
+        XCTAssertTrue("abc-def".snakecased() == "abc_def")
+        XCTAssertTrue("abc def".snakecased() == "abc_def")
+        XCTAssertTrue("UserId".snakecased()  == "user_id")
+        XCTAssertTrue("userId".snakecased()  == "user_id")
+        XCTAssertTrue("userID".snakecased()  == "user_id")
+        XCTAssertTrue("User-ID".snakecased() == "user_id")
+        XCTAssertTrue("User-ID Type".snakecased() == "user_id_type")
+        XCTAssertTrue("".snakecased() == "")
+    }
+    
     func testUppercasedFirst() {
         XCTAssertTrue("abc".uppercasedFirst() == "Abc")
         XCTAssertTrue("a".uppercasedFirst() == "A")
@@ -93,8 +124,7 @@ class SwiftMojiTests: XCTestCase {
     func testIsUppercased() {
         XCTAssertTrue("A".isUppercased())
         XCTAssertTrue("ABC".isUppercased())
-        XCTAssertTrue("A_B_C".isUppercased())
-        XCTAssertTrue(" A B C ".isUppercased())
+        XCTAssertFalse("A_B_C".isUppercased())
         
         XCTAssertFalse("a".isUppercased())
         XCTAssertFalse("aBc".isUppercased())
@@ -102,22 +132,9 @@ class SwiftMojiTests: XCTestCase {
         XCTAssertFalse(" ".isUppercased())
     }
     
-    func testIsOnlyUppercased() {
-        XCTAssertTrue("A".isOnlyUppercased())
-        XCTAssertTrue("ABC".isOnlyUppercased())
-        XCTAssertFalse("A_B_C".isOnlyUppercased())
-        
-        XCTAssertFalse("a".isOnlyUppercased())
-        XCTAssertFalse("aBc".isOnlyUppercased())
-        XCTAssertFalse("".isOnlyUppercased())
-        XCTAssertFalse(" ".isOnlyUppercased())
-    }
-    
     func testIsLowercased() {
         XCTAssertTrue("a".isLowercased())
         XCTAssertTrue("abc".isLowercased())
-        XCTAssertTrue("a_b_c".isLowercased())
-        XCTAssertTrue(" a b c ".isLowercased())
         
         XCTAssertFalse("A".isLowercased())
         XCTAssertFalse("abC".isLowercased())
@@ -125,26 +142,21 @@ class SwiftMojiTests: XCTestCase {
         XCTAssertFalse(" ".isLowercased())
     }
     
-    func testIsOnlyLowercased() {
-        XCTAssertTrue("a".isOnlyLowercased())
-        XCTAssertTrue("abc".isOnlyLowercased())
+    func testTrimmed() {
+        // trimmed
+        XCTAssertTrue("   abcdef   ".trimmed()   == "abcdef")
+        XCTAssertTrue("   abc  def   ".trimmed() == "abc  def")
+        XCTAssertTrue("abc  def   ".trimmed()    == "abc  def")
+        XCTAssertTrue("   abc  def".trimmed()    == "abc  def")
+        XCTAssertTrue(" \n  abc \n \t def \n \t".trimmed() == "abc \n \t def")
         
-        XCTAssertFalse("A".isOnlyLowercased())
-        XCTAssertFalse("abC".isOnlyLowercased())
-        XCTAssertFalse("".isOnlyLowercased())
-        XCTAssertFalse(" ".isOnlyLowercased())
-    }
-    
-    func testCamelized() {
-        XCTAssertTrue("abc_def".camelized() == "AbcDef")
-        XCTAssertTrue("Abc_def".camelized() == "AbcDef")
-        XCTAssertTrue("abc_def_ghi".camelized() == "AbcDefGhi")
-        XCTAssertTrue("abc-Def".camelized() == "AbcDef")
-        XCTAssertTrue("Abc-Def".camelized() == "AbcDef")
-        XCTAssertTrue("abc def ".camelized() == "AbcDef")
-        XCTAssertTrue("abc  def".camelized() == "AbcDef")
-        XCTAssertTrue("ABc-def_ghi jkl".camelized() == "AbcDefGhiJkl")
-        XCTAssertTrue("".camelized() == "")
+        // trimmedLeft
+        XCTAssertTrue("   abcdef   ".trimmedLeft()   == "abcdef   ")
+        XCTAssertTrue("   abc  def   ".trimmedLeft() == "abc  def   ")
+        
+        // trimmedRight
+        XCTAssertTrue("   abcdef   ".trimmedRight()   == "   abcdef")
+        XCTAssertTrue("   abc  def".trimmedRight() == "   abc  def")
     }
     
     func testIsUpperCamelized() {
@@ -172,49 +184,17 @@ class SwiftMojiTests: XCTestCase {
         XCTAssertFalse("USER".isLowerCamelized())
         XCTAssertFalse("UserId".isLowerCamelized())
     }
-    
-    func testSnakecased() {
-        XCTAssertTrue("abcDef".snakecased() == "abc_def")
-        XCTAssertTrue("abcDefGhi".snakecased() == "abc_def_ghi")
-        XCTAssertTrue("abcDef-Ghi".snakecased() == "abc_def_ghi")
-        XCTAssertTrue("abc99Def-Ghi".snakecased() == "abc99_def_ghi")
-        XCTAssertTrue("abc99Def-Ghi99".snakecased() == "abc99_def_ghi99")
-        XCTAssertTrue("ABCDEFG".snakecased() == "abcdefg")
-        XCTAssertTrue("ABC_DEF".snakecased() == "abc_def")
-        XCTAssertTrue("ABC-DEF".snakecased() == "abc_def")
-        XCTAssertTrue("abc-def".snakecased() == "abc_def")
-        XCTAssertTrue("abc def".snakecased() == "abc_def")
-        XCTAssertTrue("UserId".snakecased()  == "user_id")
-        XCTAssertTrue("userId".snakecased()  == "user_id")
-        XCTAssertTrue("userID".snakecased()  == "user_id")
-        XCTAssertTrue("User-ID".snakecased() == "user_id")
-        XCTAssertTrue("User-ID Type".snakecased() == "user_id_type")
-        XCTAssertTrue("".snakecased() == "")
-    }
-    
-    func testTrimmed() {
-        // trimmed
-        XCTAssertTrue("   abcdef   ".trimmed()   == "abcdef")
-        XCTAssertTrue("   abc  def   ".trimmed() == "abc  def")
-        XCTAssertTrue("abc  def   ".trimmed()    == "abc  def")
-        XCTAssertTrue("   abc  def".trimmed()    == "abc  def")
-        XCTAssertTrue(" \n  abc \n \t def \n \t".trimmed() == "abc \n \t def")
+
+    func testIsHiragana() {
+        XCTAssertTrue("あいうえお".isHiragana())
+        XCTAssertTrue("\u{3041}".isHiragana())
+        XCTAssertTrue("ぁ".isHiragana())
+        XCTAssertTrue("ゖ".isHiragana())
         
-        // trimmedLeft
-        XCTAssertTrue("   abcdef   ".trimmedLeft()   == "abcdef   ")
-        XCTAssertTrue("   abc  def   ".trimmedLeft() == "abc  def   ")
-        
-        // trimmedRight
-        XCTAssertTrue("   abcdef   ".trimmedRight()   == "   abcdef")
-        XCTAssertTrue("   abc  def".trimmedRight() == "   abc  def")
-    }
-    
-    func testIsOnlyUppercasedPerformance() {
-        self.measureBlock {
-            for _ in 0..<10000 {
-                "A_B_C".isOnlyUppercased()
-            }
-        }
+        XCTAssertFalse("abc".isHiragana())
+        XCTAssertFalse("\u{3040}".isHiragana())
+        XCTAssertFalse("\u{3097}".isHiragana())
+        XCTAssertFalse("".isHiragana())
     }
     
     func testSnakecasedPerformance() {

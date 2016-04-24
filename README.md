@@ -62,23 +62,11 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 **isUppercased()**
 ```swift
-"A_B_C".isUppercased() // "true"
-"aBc".isUppercased()   // "false"
-```
-
-**isOnlyUppercased()**
-```swift
 "ABC".isOnlyUppercased()   // "true"
 "A_B_C".isOnlyUppercased() // "false"
 ```
 
 **isLowercased()**
-```swift
-"a_b_c".isLowercased() // "true"
-"abC".isLowercased()   // "false"
-```
-
-**isOnlyLowercased()**
 ```swift
 "abc".isOnlyLowercased()   // "true"
 "a_b_c".isOnlyLowercased() // "false"
@@ -107,6 +95,12 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ```swift
 "-1.983388".isNumeric() // "true"
 "abc".isNumeric()       // "false"
+```
+
+**isHiragana()**
+```swift
+"あいうえお".isHiragana() // "true"
+"abc".isHiragana()      // "false"
 ```
 
 ## Installation

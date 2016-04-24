@@ -140,36 +140,11 @@ public extension String {
     func isUppercased() -> Bool {
         guard !self.isEmpty else { return false }
         
-        let rangeOfLower = self.rangeOfCharacterFromSet(NSCharacterSet.lowercaseLetterCharacterSet())
-        let rangeOfUpper = self.rangeOfCharacterFromSet(NSCharacterSet.uppercaseLetterCharacterSet())
-        if rangeOfLower == nil && rangeOfUpper != nil {
-            return true
-        }
-        return false
-    }
-    
-    /// `true` if `self` is only uppercased.
-    func isOnlyUppercased() -> Bool {
-        guard !self.isEmpty else { return false }
-        
         return self.isOnlyComposed(characterSet: MojiConstant.ASCII_UPPERCASE_SET)
     }
     
     /// `true` if `self` is lowercased.
     func isLowercased() -> Bool {
-        guard !self.isEmpty else { return false }
-        
-        let rangeOfLower = self.rangeOfCharacterFromSet(NSCharacterSet.lowercaseLetterCharacterSet())
-        let rangeOfUpper = self.rangeOfCharacterFromSet(NSCharacterSet.uppercaseLetterCharacterSet())
-        if rangeOfLower != nil && rangeOfUpper == nil {
-            return true
-        }
-        
-        return false
-    }
-    
-    /// `true` if `self` is only lowercased.
-    func isOnlyLowercased() -> Bool {
         guard !self.isEmpty else { return false }
         
         return self.isOnlyComposed(characterSet: MojiConstant.ASCII_LOWERCASE_SET)
@@ -208,6 +183,19 @@ public extension String {
             return true
         }
         return false
+    }
+    
+    /// `true` if `self` is only composed Japanese Hiragana
+    /// if you'd like to get more details, see http://unicode.org/charts/PDF/U3040.pdf
+    func isHiragana() -> Bool {
+        guard !self.isEmpty else { return false }
+        
+        for unicodeScalar in self.unicodeScalars {
+            if !(unicodeScalar.value >= 0x3041 && unicodeScalar.value <= 0x3096) {
+                return false
+            }
+        }
+        return true
     }
     
     /// `true` if `self` is only alphabet.
