@@ -101,6 +101,12 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ```swift
 "あいうえお".isHiragana() // "true"
 "abc".isHiragana()      // "false"
+```  
+
+**isKatakana()**
+```swift
+"アイウエオ".isKatakana() // "true"
+"abc".isKatakana()      // "false"
 ```
 
 ## Installation

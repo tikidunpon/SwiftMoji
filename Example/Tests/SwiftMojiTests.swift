@@ -197,6 +197,19 @@ class SwiftMojiTests: XCTestCase {
         XCTAssertFalse("".isHiragana())
     }
     
+    func testIsKatakana() {
+        XCTAssertTrue("アイウエオ".isKatakana())
+        XCTAssertTrue("\u{30A1}".isKatakana())
+        XCTAssertTrue("\u{30FA}".isKatakana())
+        XCTAssertTrue("ァ".isKatakana())
+        XCTAssertTrue("ヺ".isKatakana())
+        
+        XCTAssertFalse("abc".isKatakana())
+        XCTAssertFalse("\u{30A0}".isKatakana())
+        XCTAssertFalse("\u{30FB}".isKatakana())
+        XCTAssertFalse("".isKatakana())
+    }
+    
     func testSnakecasedPerformance() {
         self.measureBlock {
             for _ in 0..<10000 {

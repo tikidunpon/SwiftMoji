@@ -198,6 +198,19 @@ public extension String {
         return true
     }
     
+    /// `true` if `self` is only composed Japanese Katakana
+    /// if you'd like to get more details, see http://unicode.org/charts/PDF/U30A0.pdf
+    func isKatakana() -> Bool {
+        guard !self.isEmpty else { return false }
+        
+        for unicodeScalar in self.unicodeScalars {
+            if !(unicodeScalar.value >= 0x30A1 && unicodeScalar.value <= 0x30FA) {
+                return false
+            }
+        }
+        return true
+    }
+    
     /// `true` if `self` is only alphabet.
     private func isOnlyComposed(characterSet set :Set<String>) -> Bool {
         guard !self.isEmpty else { return false }
