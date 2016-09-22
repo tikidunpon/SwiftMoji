@@ -15,7 +15,7 @@ private class MojiConstant {
     
     static let ASCII_ALPHABET_SET = ASCII_UPPERCASE_SET.union(ASCII_LOWERCASE_SET)
     
-    static let NUMBER_FORMATTER = NSNumberFormatter()
+    static let NUMBER_FORMATTER = NumberFormatter()
 }
 
 public extension String {
@@ -32,7 +32,7 @@ public extension String {
         return MojiConstant.ASCII_ALPHABET_SET
     }
     
-    private var NUMBER_FORMATTER: NSNumberFormatter {
+    private var NUMBER_FORMATTER: NumberFormatter {
         return MojiConstant.NUMBER_FORMATTER
     }
     
@@ -48,8 +48,11 @@ public extension String {
     func second() -> String {
         guard !self.isEmpty else { return self }
         
-        let secondIndex = self.startIndex.successor()
-        let secondIndexInt = self.startIndex.distanceTo(secondIndex)
+        //let secondIndex = self.startIndex.successor()
+        let secondIndex = self.index(after: self.startIndex)
+        //let secondIndexInt = self.startIndex.distanceTo(secondIndex)
+        let secondIndexInt = self.distance(from: self.startIndex,
+                                           to: secondIndex)
         
         guard self.characters.count > secondIndexInt else { return "" }
         
@@ -59,8 +62,8 @@ public extension String {
     /// Returns the last element of `self`, or `empty string` if `self` is empty
     func last() -> String {
         guard !self.isEmpty else { return self }
-        
-        return String(self[self.endIndex.predecessor()])
+        let beforeEndIndex = self.index(before: self.endIndex)
+        return String(self[beforeEndIndex])
     }
     
     //MARK: Change
@@ -68,50 +71,51 @@ public extension String {
     func camelized() -> String {
         guard !self.isEmpty else { return self }
         
-        return self.stringByReplacingOccurrencesOfString("_", withString: " ")
-                   .stringByReplacingOccurrencesOfString("-", withString: " ")
-                   .capitalizedString
-                   .stringByReplacingOccurrencesOfString(" ", withString: "")
+        return self.replacingOccurrences(of: "_", with: " ")
+                   .replacingOccurrences(of: "-", with: " ")
+                   .capitalized
+                   .replacingOccurrences(of: " ", with: "")
     }
     
     /// Returns snakecased string from camelized string.
     func snakecased() -> String {
         guard !self.isEmpty else { return self }
-        
-        let singleUnderscored = self.stringByReplacingOccurrencesOfString("-", withString: "_")
-                                    .stringByReplacingOccurrencesOfString(" ", withString: "_")
-                                    .stringByReplacingOccurrencesOfString("_+",withString: "_",
-                                                                               options: .RegularExpressionSearch,
-                                                                               range: nil)
+
+        let singleUnderscored = self.replacingOccurrences(of: "-", with: "_")
+                                    .replacingOccurrences(of: " ", with: "_")
+                                    .replacingOccurrences(of: "_+",with: "_",
+                                                        options: .regularExpression,
+                                                        range: nil)
         if singleUnderscored.isUppercased() {
-            return singleUnderscored.lowercaseString
+            return singleUnderscored.lowercased()
         }
         
         let pattern     = "([a-z0-9])([A-Z])"
         let replacement = "$1_$2"
-        return singleUnderscored.stringByReplacingOccurrencesOfString(pattern,
-                                                                      withString: replacement,
-                                                                      options: .RegularExpressionSearch,
-                                                                      range: nil).lowercaseString
+        return singleUnderscored.replacingOccurrences(of: pattern,
+                                                      with: replacement,
+                                                      options: .regularExpression,
+                                                      range: nil).lowercased()
     }
     
     /// Returns string that has trimmed whitespace and newline
     func trimmed() -> String {
-        return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
     
     /// Returns string that has trimmed whitespace and newline that is on the left side of contents
     func trimmedLeft() -> String {
-        if let range = rangeOfCharacterFromSet(NSCharacterSet.whitespaceAndNewlineCharacterSet().invertedSet) {
-            return self[range.startIndex..<endIndex]
+        if let range = rangeOfCharacter(from: CharacterSet.whitespacesAndNewlines.inverted) {
+            return self[range.lowerBound..<endIndex]
         }
         return self
     }
     
     /// Returns string that has trimmed whitespace and newline that is on the right side of contents
     func trimmedRight() -> String {
-        if let range = rangeOfCharacterFromSet(NSCharacterSet.whitespaceAndNewlineCharacterSet().invertedSet, options: NSStringCompareOptions.BackwardsSearch) {
-            return self[startIndex..<range.endIndex]
+        if let range = rangeOfCharacter(from: CharacterSet.whitespacesAndNewlines.inverted,
+                                        options: .backwards) {
+            return self[startIndex..<range.upperBound]
         }
         return self
     }
@@ -119,13 +123,13 @@ public extension String {
     /// Returns the string that is uppercased the first element
     /// or empty string if `self` is empty
     func uppercasedFirst() -> String {
-        return self.first().uppercaseString + String(self.characters.dropFirst())
+        return self.first().uppercased() + String(self.characters.dropFirst())
     }
 
     /// Returns the string that is lowercased the first element
     /// or empty string if `self` is empty
     func lowercasedFirst() -> String {
-        return self.first().lowercaseString + String(self.characters.dropFirst())
+        return self.first().lowercased() + String(self.characters.dropFirst())
     }
     
     //MARK: Check
@@ -133,7 +137,7 @@ public extension String {
     func isCapitalized() -> Bool {
         guard !self.isEmpty else { return false }
         
-        return self == self.capitalizedString
+        return self == self.capitalized
     }
     
     /// `true` if `self` is uppercased.
@@ -154,8 +158,11 @@ public extension String {
     func isUpperCamelized() -> Bool {
         guard !self.isEmpty else { return false }
         
-        if let range = self.rangeOfString("^[A-Z]+[0-9]*[A-Za-z]*[a-z]+[\\w\\d]*", options: .RegularExpressionSearch, range: nil, locale: nil) {
-            return range.count == self.characters.count
+        if let range = self.range(of: "^[A-Z]+[0-9]*[A-Za-z]*[a-z]+[\\w\\d]*",
+                                  options: .regularExpression,
+                                  range: nil, locale: nil) {
+            let count = self.distance(from: range.lowerBound, to: range.upperBound)
+            return count == self.characters.count
         } else {
             return false
         }
@@ -165,8 +172,11 @@ public extension String {
     func isLowerCamelized() -> Bool {
         guard !self.isEmpty else { return false }
         
-        if let range = self.rangeOfString("^[a-z]+[0-9]*[A-Za-z]*[a-z]+[\\w\\d]*", options: .RegularExpressionSearch, range: nil, locale: nil) {
-            return range.count == self.characters.count
+        if let range = self.range(of: "^[a-z]+[0-9]*[A-Za-z]*[a-z]+[\\w\\d]*",
+                                  options: .regularExpression,
+                                  range: nil, locale: nil) {
+            let count = self.distance(from: range.lowerBound, to: range.upperBound)
+            return count == self.characters.count
         } else {
             return false
         }
@@ -179,7 +189,7 @@ public extension String {
     
     /// `true` if `self` is only composed numeric.
     func isNumeric() -> Bool {
-        if let _ = NUMBER_FORMATTER.numberFromString(self) {
+        if let _ = NUMBER_FORMATTER.number(from: self) {
             return true
         }
         return false

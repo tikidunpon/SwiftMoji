@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import SwiftMoji
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let snakeCased = "UserId".snakecased()
+        print(snakeCased)
         // Do any additional setup after loading the view, typically from a nib.
     }
 
