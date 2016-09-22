@@ -163,10 +163,12 @@ class SwiftMojiTests: XCTestCase {
         // trimmedLeft
         XCTAssertTrue("   abcdef   ".trimmedLeft()   == "abcdef   ")
         XCTAssertTrue("   abc  def   ".trimmedLeft() == "abc  def   ")
+        XCTAssertTrue("   ".trimmedLeft() == "   ")
         
         // trimmedRight
         XCTAssertTrue("   abcdef   ".trimmedRight()   == "   abcdef")
         XCTAssertTrue("   abc  def".trimmedRight() == "   abc  def")
+        XCTAssertTrue("   ".trimmedRight() == "   ")
     }
     
     func testIsUpperCamelized() {

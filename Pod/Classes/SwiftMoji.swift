@@ -161,14 +161,14 @@ public extension String {
     func isUppercased() -> Bool {
         guard !self.isEmpty else { return false }
         
-        return self.isOnlyComposed(characterSet: MojiConstant.ASCII_UPPERCASE_SET)
+        return self.isOnlyComposed(characterSet: ASCII_UPPERCASE_SET)
     }
     
     /// `true` if `self` is lowercased.
     func isLowercased() -> Bool {
         guard !self.isEmpty else { return false }
         
-        return self.isOnlyComposed(characterSet: MojiConstant.ASCII_LOWERCASE_SET)
+        return self.isOnlyComposed(characterSet: ASCII_LOWERCASE_SET)
     }
     
     /// `true` if `self` is upper-camelized.
