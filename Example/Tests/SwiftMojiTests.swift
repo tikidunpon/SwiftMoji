@@ -87,6 +87,16 @@ class SwiftMojiTests: XCTestCase {
         XCTAssertTrue("".lowercasedFirst()    == "")
     }
     
+    func testDropFirst() {
+        XCTAssertTrue("abc".dropFirst() == "bc")
+        XCTAssertTrue("abc".dropFirst(2) == "c")
+    }
+    
+    func testDropLast() {
+        XCTAssertTrue("abc".dropLast() == "ab")
+        XCTAssertTrue("abc".dropLast(2) == "a")
+    }
+    
     func testIsCapitalized() {
         XCTAssertTrue("A".isCapitalized())
         XCTAssertTrue("Abc".isCapitalized())

@@ -41,16 +41,13 @@ public extension String {
     /// Returns the first element of `self`, or `empty string` if `self` is empty.
     func first() -> String {
         guard !self.isEmpty else { return self }
-        
         return String(self[self.startIndex])
     }
     
     func second() -> String {
         guard !self.isEmpty else { return self }
         
-        //let secondIndex = self.startIndex.successor()
         let secondIndex = self.index(after: self.startIndex)
-        //let secondIndexInt = self.startIndex.distanceTo(secondIndex)
         let secondIndexInt = self.distance(from: self.startIndex,
                                            to: secondIndex)
         
@@ -130,6 +127,26 @@ public extension String {
     /// or empty string if `self` is empty
     func lowercasedFirst() -> String {
         return self.first().lowercased() + String(self.characters.dropFirst())
+    }
+    
+    /// The wapper of dropFirst
+    func dropFirst() -> String {
+        return String(self.characters.dropFirst())
+    }
+    
+    /// The wapper of dropFirst(n: Int)
+    func dropFirst(_ n: Int) -> String {
+        return String(self.characters.dropFirst(n))
+    }
+    
+    /// The wapper of dropLast
+    func dropLast() -> String {
+        return String(self.characters.dropLast())
+    }
+    
+    /// The wapper of dropLast(n: Int)
+    func dropLast(_ n: Int) -> String {
+        return String(self.characters.dropLast(n))
     }
     
     //MARK: Check
