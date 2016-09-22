@@ -35,6 +35,9 @@ s.source_files = 'Pod/Classes/**/*'
 s.resource_bundles = {
 'SwiftMoji' => ['Pod/Assets/*.png']
 }
+s.xcconfig = {
+    'SWIFT_VERSION' => '3'
+  }
 
 # s.public_header_files = 'Pod/Classes/**/*.h'
 # s.frameworks = 'UIKit', 'MapKit'
