@@ -1,0 +1,16 @@
+PODS:
+  - SwiftMoji (0.1.0)
+
+DEPENDENCIES:
+  - SwiftMoji (from `../`)
+
+EXTERNAL SOURCES:
+  SwiftMoji:
+    :path: ../
+
+SPEC CHECKSUMS:
+  SwiftMoji: fbf5b58b82277276dd4ef6c0120308bb69d0dcd2
+
+PODFILE CHECKSUM: f9707f67ece2431b85a367d009242e74b0150d94
+
+COCOAPODS: 1.1.0.rc.2

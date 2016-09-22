@@ -11,7 +11,7 @@ xcode_sdk: iphonesimulator
 before_install:
   - pod --version
   - gem uninstall cocoapods -a
-  - gem install -v 0.39.0 cocoapods
+  - gem install -v 1.1.0.rc.2 cocoapods
   - pod --version
   - pod install --project-directory=Example
 
