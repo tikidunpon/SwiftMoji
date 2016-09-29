@@ -222,6 +222,12 @@ class SwiftMojiTests: XCTestCase {
         XCTAssertFalse("".isKatakana())
     }
     
+    func testRemoveRedundantWhitespace() {
+        XCTAssertTrue("abc    def".removeRedundantWhitespace == "abc def")
+        XCTAssertTrue("abcdef".removeRedundantWhitespace == "abcdef")
+        XCTAssertTrue("  abcdef".removeRedundantWhitespace == "abcdef")
+    }
+    
     func testSnakecasedPerformance() {
         self.measure {
             for _ in 0..<10000 {

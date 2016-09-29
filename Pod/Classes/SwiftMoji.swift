@@ -148,7 +148,13 @@ public extension String {
     func dropLast(_ n: Int) -> String {
         return String(self.characters.dropLast(n))
     }
-    
+  
+    /// Remove redundant white space
+    func removeRedundantWhitespace() -> String {
+        let a = components(separatedBy: CharacterSet.whitespacesAndNewlines).filter{ !$0.isEmpty }
+        return a.joined(separator: " ")
+    }
+  
     //MARK: Check
     /// `true` if `self` is capitalized.
     func isCapitalized() -> Bool {
