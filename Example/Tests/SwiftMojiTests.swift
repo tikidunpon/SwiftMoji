@@ -223,9 +223,9 @@ class SwiftMojiTests: XCTestCase {
     }
     
     func testRemoveRedundantWhitespace() {
-        XCTAssertTrue("abc    def".removeRedundantWhitespace == "abc def")
-        XCTAssertTrue("abcdef".removeRedundantWhitespace == "abcdef")
-        XCTAssertTrue("  abcdef".removeRedundantWhitespace == "abcdef")
+        XCTAssertTrue("abc    def".removeRedundantWhitespace() == "abc def")
+        XCTAssertTrue("abcdef".removeRedundantWhitespace() == "abcdef")
+        XCTAssertTrue("  abcdef".removeRedundantWhitespace() == "abcdef")
     }
     
     func testSnakecasedPerformance() {
