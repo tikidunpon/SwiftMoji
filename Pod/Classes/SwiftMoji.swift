@@ -155,6 +155,15 @@ public extension String {
         return a.joined(separator: " ")
     }
   
+    /// Returns the string that has truncated at the specified length
+    func truncated(length: Int, trailing: String = "...") -> String {
+        if self.characters.count > length {
+            return self.substring(to: index(startIndex, offsetBy: length)) + trailing
+        } else {
+            return self
+        }
+    }
+  
     //MARK: Check
     /// `true` if `self` is capitalized.
     func isCapitalized() -> Bool {

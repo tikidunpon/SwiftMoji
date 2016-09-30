@@ -97,6 +97,21 @@ class SwiftMojiTests: XCTestCase {
         XCTAssertTrue("abc".dropLast(2) == "a")
     }
     
+    func testTruncated() {
+        XCTAssertTrue("Returns the string that has trancated at the specified length".truncated(length: 10)
+                      ==
+                      "Returns th...")
+        
+        XCTAssertTrue("Returns the string that has trancated at the specified length".truncated(length: 100)
+                      ==
+                      "Returns the string that has trancated at the specified length")
+        
+        XCTAssertTrue("Returns the string that has trancated at the specified length".truncated(length: 10, trailing: "・・・")
+                      ==
+                      "Returns th・・・")
+        
+    }
+    
     func testIsCapitalized() {
         XCTAssertTrue("A".isCapitalized())
         XCTAssertTrue("Abc".isCapitalized())
