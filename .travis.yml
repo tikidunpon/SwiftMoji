@@ -11,12 +11,12 @@ xcode_sdk: iphonesimulator
 before_install:
   - pod --version
   - gem uninstall cocoapods -a
-  - gem install -v 1.1.0.rc.1 cocoapods
+  - gem install -v 1.1.1 cocoapods
   - pod --version
   - pod install --project-directory=Example
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)  
+  - bash <(curl -s https://codecov.io/bash)
 
 script:
   - pod lib lint
