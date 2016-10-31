@@ -10,31 +10,31 @@ import Foundation
 import UIKit
 
 private class MojiConstant {
-    static let ASCII_UPPERCASE_SET = Set(["A", "B", "C", "D", "E", "F", "G","H", "I", "J", "K", "L", "M", "N","O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"])
+    static let asciiUppercaseSet = Set(["A", "B", "C", "D", "E", "F", "G","H", "I", "J", "K", "L", "M", "N","O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"])
     
-    static let ASCII_LOWERCASE_SET = Set(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"])
+    static let asciiLowercaseSet = Set(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"])
     
-    static let ASCII_ALPHABET_SET = ASCII_UPPERCASE_SET.union(ASCII_LOWERCASE_SET)
+    static let asciiAlphabetSet = asciiUppercaseSet.union(asciiLowercaseSet)
     
-    static let NUMBER_FORMATTER = NumberFormatter()
+    static let numberFormatter = NumberFormatter()
 }
 
 public extension String {
     
-    private var ASCII_LOWERCASE_SET: Set<String> {
-        return MojiConstant.ASCII_LOWERCASE_SET
+    fileprivate var asciiLowercaseSet: Set<String> {
+        return MojiConstant.asciiLowercaseSet
     }
     
-    private var ASCII_UPPERCASE_SET: Set<String> {
-        return MojiConstant.ASCII_UPPERCASE_SET
+    fileprivate var asciiUppercaseSet: Set<String> {
+        return MojiConstant.asciiUppercaseSet
     }
     
-    private var ASCII_ALPHABET_SET: Set<String> {
-        return MojiConstant.ASCII_ALPHABET_SET
+    fileprivate var asciiAlphabetSet: Set<String> {
+        return MojiConstant.asciiAlphabetSet
     }
     
-    private var NUMBER_FORMATTER: NumberFormatter {
-        return MojiConstant.NUMBER_FORMATTER
+    fileprivate var numberFormatter: NumberFormatter {
+        return MojiConstant.numberFormatter
     }
     
     //MARK: Search
@@ -157,7 +157,7 @@ public extension String {
     }
   
     /// Returns the string that has truncated at the specified length
-    func truncated(length: Int, trailing: String = "...") -> String {
+    func truncated(length length: Int, trailing: String = "...") -> String {
         if self.characters.count > length {
             return self.substring(to: index(startIndex, offsetBy: length)) + trailing
         } else {
@@ -223,14 +223,14 @@ public extension String {
     func isUppercased() -> Bool {
         guard !self.isEmpty else { return false }
         
-        return self.isOnlyComposed(characterSet: ASCII_UPPERCASE_SET)
+        return self.isOnlyComposed(characterSet: asciiUppercaseSet)
     }
     
     /// `true` if `self` is lowercased.
     func isLowercased() -> Bool {
         guard !self.isEmpty else { return false }
         
-        return self.isOnlyComposed(characterSet: ASCII_LOWERCASE_SET)
+        return self.isOnlyComposed(characterSet: asciiLowercaseSet)
     }
     
     /// `true` if `self` is upper-camelized.
@@ -263,12 +263,12 @@ public extension String {
     
     /// `true` if `self` is only composed alphabet.
     func isAlphabet() -> Bool {
-        return self.isOnlyComposed(characterSet: ASCII_ALPHABET_SET)
+        return self.isOnlyComposed(characterSet: asciiAlphabetSet)
     }
     
     /// `true` if `self` is only composed numeric.
     func isNumeric() -> Bool {
-        if let _ = NUMBER_FORMATTER.number(from: self) {
+        if let _ = numberFormatter.number(from: self) {
             return true
         }
         return false
@@ -301,7 +301,7 @@ public extension String {
     }
     
     /// `true` if `self` is only alphabet.
-    private func isOnlyComposed(characterSet set :Set<String>) -> Bool {
+    fileprivate func isOnlyComposed(characterSet set :Set<String>) -> Bool {
         guard !self.isEmpty else { return false }
         
         for c in self.characters {
