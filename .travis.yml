@@ -4,6 +4,7 @@
 
 language: objective-c
 osx_image: xcode8
+xcode_sdk: iphonesimulator10.0
 cache: cocoapods
 podfile: Example/Podfile
 
@@ -21,5 +22,5 @@ after_success:
 script:
   - pod lib lint
   - set -o pipefail
-  - xcodebuild clean build -workspace Example/SwiftMoji.xcworkspace -scheme SwiftMoji-Example -configuration Debug -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 6s" | xcpretty
-  - xcodebuild test -workspace Example/SwiftMoji.xcworkspace -scheme SwiftMoji-Example -configuration Debug  -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 6s" | xcpretty
+  - xcodebuild clean build -workspace Example/SwiftMoji.xcworkspace -scheme SwiftMoji-Example -configuration Debug -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 6" | xcpretty
+  - xcodebuild test -workspace Example/SwiftMoji.xcworkspace -scheme SwiftMoji-Example -configuration Debug  -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 6" | xcpretty
