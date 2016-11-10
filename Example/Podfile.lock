@@ -1,5 +1,5 @@
 PODS:
-  - SwiftMoji (0.2.0)
+  - SwiftMoji (0.3.0)
 
 DEPENDENCIES:
   - SwiftMoji (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  SwiftMoji: dc8a905a39cef1f1f37a8bc61acf07b742ccadb1
+  SwiftMoji: a3f6550dc825d7a7523ef1460ac540595b175cea
 
 PODFILE CHECKSUM: f9707f67ece2431b85a367d009242e74b0150d94
 
