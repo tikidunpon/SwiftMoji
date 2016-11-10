@@ -112,7 +112,6 @@ class SwiftMojiTests: XCTestCase {
     }
     
     func testToColor() {
-        
         XCTAssertTrue("black".toColor()! == UIColor.black)
         XCTAssertTrue("blue".toColor()! == UIColor.blue)
         XCTAssertTrue("brown".toColor()! == UIColor.brown)

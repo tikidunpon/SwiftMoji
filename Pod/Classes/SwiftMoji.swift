@@ -157,13 +157,14 @@ public extension String {
     }
   
     /// Returns the string that has truncated at the specified length
-    func truncated(length length: Int, trailing: String = "...") -> String {
+    func truncated(length: Int, trailing: String = "...") -> String {
         if self.characters.count > length {
             return self.substring(to: index(startIndex, offsetBy: length)) + trailing
         } else {
             return self
         }
     }
+  
     
     /// Returns the color if string is color name
     func toColor() -> UIColor? {
