@@ -6,9 +6,9 @@ language: objective-c
 osx_image: xcode8
 cache: cocoapods
 podfile: Example/Podfile
-xcode_sdk: iphonesimulator10.0
 
 before_install:
+  - rvm get head
   - pod --version
   - gem uninstall cocoapods -a
   - gem install -v 1.1.1 cocoapods
