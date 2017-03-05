@@ -268,7 +268,7 @@ class SwiftMojiTests: XCTestCase {
     func testSnakecasedPerformance() {
         self.measure {
             for _ in 0..<10000 {
-                "UserId".snakecased()
+                _ = "UserId".snakecased()
             }
         }
     }

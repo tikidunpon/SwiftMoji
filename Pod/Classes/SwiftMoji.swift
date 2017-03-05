@@ -9,33 +9,19 @@
 import Foundation
 import UIKit
 
-private class MojiConstant {
-    static let asciiUppercaseSet = Set(["A", "B", "C", "D", "E", "F", "G","H", "I", "J", "K", "L", "M", "N","O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"])
+//MARK: Constant
+private extension String {
+    static let AsciiUppercaseSet: Set<String> = Set(["A", "B", "C", "D", "E", "F", "G","H", "I", "J", "K", "L", "M", "N","O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"])
     
-    static let asciiLowercaseSet = Set(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"])
+    static let AsciiLowercaseSet: Set<String> = Set(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"])
     
-    static let asciiAlphabetSet = asciiUppercaseSet.union(asciiLowercaseSet)
+    static let AsciiAlphabetSet: Set<String> = AsciiUppercaseSet.union(AsciiLowercaseSet)
     
-    static let numberFormatter = NumberFormatter()
+    static let DefaultNumberFormatter = NumberFormatter()
 }
 
+//MARK: SwiftMoji
 public extension String {
-    
-    fileprivate var asciiLowercaseSet: Set<String> {
-        return MojiConstant.asciiLowercaseSet
-    }
-    
-    fileprivate var asciiUppercaseSet: Set<String> {
-        return MojiConstant.asciiUppercaseSet
-    }
-    
-    fileprivate var asciiAlphabetSet: Set<String> {
-        return MojiConstant.asciiAlphabetSet
-    }
-    
-    fileprivate var numberFormatter: NumberFormatter {
-        return MojiConstant.numberFormatter
-    }
     
     //MARK: Search
     
@@ -224,14 +210,14 @@ public extension String {
     func isUppercased() -> Bool {
         guard !self.isEmpty else { return false }
         
-        return self.isOnlyComposed(characterSet: asciiUppercaseSet)
+        return self.isOnlyComposed(characterSet: String.AsciiUppercaseSet)
     }
     
     /// `true` if `self` is lowercased.
     func isLowercased() -> Bool {
         guard !self.isEmpty else { return false }
         
-        return self.isOnlyComposed(characterSet: asciiLowercaseSet)
+        return self.isOnlyComposed(characterSet: String.AsciiLowercaseSet)
     }
     
     /// `true` if `self` is upper-camelized.
@@ -264,12 +250,12 @@ public extension String {
     
     /// `true` if `self` is only composed alphabet.
     func isAlphabet() -> Bool {
-        return self.isOnlyComposed(characterSet: asciiAlphabetSet)
+        return self.isOnlyComposed(characterSet: String.AsciiAlphabetSet)
     }
     
     /// `true` if `self` is only composed numeric.
     func isNumeric() -> Bool {
-        if let _ = numberFormatter.number(from: self) {
+        if let _ = String.DefaultNumberFormatter.number(from: self) {
             return true
         }
         return false
