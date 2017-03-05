@@ -134,6 +134,14 @@ class SwiftMojiTests: XCTestCase {
         XCTAssertTrue("abc".toColor() == nil)
     }
     
+    func testIndexInt() {
+        XCTAssertTrue("test".indexInt(of: "t") == 0)
+        XCTAssertTrue("test".indexInt(of: "s") == 2)
+        XCTAssertTrue("test".indexInt(of: "es") == 1)
+        XCTAssertTrue("test".indexInt(of: "test") == 0)
+        XCTAssertTrue("test".indexInt(of: "z") == nil)
+    }
+    
     func testIsCapitalized() {
         XCTAssertTrue("A".isCapitalized())
         XCTAssertTrue("Abc".isCapitalized())

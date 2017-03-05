@@ -61,6 +61,18 @@ public extension String {
                    .replacingOccurrences(of: " ", with: "")
     }
     
+    
+    /// Returns index as Int?
+    ///
+    /// - Parameter character: a search target character
+    /// - Returns: searched index or nil
+    func indexInt(of: String) -> Int? {
+        if let r = self.range(of: of) {
+            return self.distance(from: self.startIndex, to: r.lowerBound)
+        }
+        return nil
+    }
+    
     /// Returns snakecased string from camelized string.
     func snakecased() -> String {
         guard !self.isEmpty else { return self }
@@ -150,7 +162,6 @@ public extension String {
             return self
         }
     }
-  
     
     /// Returns the color if string is color name
     func toColor() -> UIColor? {
