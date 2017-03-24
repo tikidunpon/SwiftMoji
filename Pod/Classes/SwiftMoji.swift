@@ -27,14 +27,14 @@ public extension String {
     
     ///  Finds the string between two bookend strings if it can be found.
     ///
-    ///  - parameter left:  The left bookend
-    ///  - parameter right: The right bookend
+    ///  - parameter lhs: The left bookend
+    ///  - parameter rhs: The right bookend
     ///
     ///  - returns: The string between the two bookends, or nil if the bookends cannot be found, the bookends are the same or appear contiguously.
-    func between(_ left: String, _ right: String) -> String? {
-        guard let leftRange = range(of: left),
-              let rightRange = range(of: right, options: .backwards),
-              left != right && leftRange.upperBound != rightRange.lowerBound
+    func between(_ lhs: String, _ rhs: String) -> String? {
+        guard let leftRange = range(of: lhs),
+              let rightRange = range(of: rhs, options: .backwards),
+              lhs != rhs && leftRange.upperBound != rightRange.lowerBound
             else { return nil }
         
         return self[leftRange.upperBound..<rightRange.lowerBound]
@@ -42,38 +42,38 @@ public extension String {
     
     /// Returns the first element of `self`, or `empty string` if `self` is empty.
     func first() -> String {
-        guard !self.isEmpty else { return self }
-        return String(self[self.startIndex])
+        guard !isEmpty else { return self }
+        return String(self[startIndex])
     }
     
     func second() -> String {
-        guard !self.isEmpty else { return self }
-        
-        let secondIndex = self.index(after: self.startIndex)
-        let secondIndexInt = self.distance(from: self.startIndex,
+        guard !isEmpty else { return self }
+
+        let secondIndex = index(after: startIndex)
+        let secondIndexInt = distance(from: startIndex,
                                            to: secondIndex)
         
-        guard self.characters.count > secondIndexInt else { return "" }
+        guard characters.count > secondIndexInt else { return "" }
 
         return String(self[secondIndex])
     }
     
     /// Returns the last element of `self`, or `empty string` if `self` is empty
     func last() -> String {
-        guard !self.isEmpty else { return self }
-        let beforeEndIndex = self.index(before: self.endIndex)
+        guard !isEmpty else { return self }
+        let beforeEndIndex = index(before: endIndex)
         return String(self[beforeEndIndex])
     }
     
     //MARK: Change
     /// Returns upper-camelized String
     func camelized() -> String {
-        guard !self.isEmpty else { return self }
+        guard !isEmpty else { return self }
         
-        return self.replacingOccurrences(of: "_", with: " ")
-                   .replacingOccurrences(of: "-", with: " ")
-                   .capitalized
-                   .replacingOccurrences(of: " ", with: "")
+        return replacingOccurrences(of: "_", with: " ")
+              .replacingOccurrences(of: "-", with: " ")
+              .capitalized
+              .replacingOccurrences(of: " ", with: "")
     }
     
     
@@ -82,21 +82,21 @@ public extension String {
     /// - Parameter character: a search target character
     /// - Returns: searched index or nil
     func indexInt(of: String) -> Int? {
-        if let r = self.range(of: of) {
-            return self.distance(from: self.startIndex, to: r.lowerBound)
+        if let r = range(of: of) {
+            return distance(from: startIndex, to: r.lowerBound)
         }
         return nil
     }
     
     /// Returns snakecased string from camelized string.
     func snakecased() -> String {
-        guard !self.isEmpty else { return self }
+        guard !isEmpty else { return self }
 
-        let singleUnderscored = self.replacingOccurrences(of: "-", with: "_")
-                                    .replacingOccurrences(of: " ", with: "_")
-                                    .replacingOccurrences(of: "_+",with: "_",
-                                                        options: .regularExpression,
-                                                        range: nil)
+        let singleUnderscored = replacingOccurrences(of: "-", with: "_")
+                               .replacingOccurrences(of: " ", with: "_")
+                               .replacingOccurrences(of: "_+",with: "_",
+                                options: .regularExpression,
+                                range: nil)
         if singleUnderscored.isUppercased() {
             return singleUnderscored.lowercased()
         }
@@ -111,7 +111,7 @@ public extension String {
     
     /// Returns string that has trimmed whitespace and newline
     func trimmed() -> String {
-        return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        return trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
     
     /// Returns string that has trimmed whitespace and newline that is on the left side of contents
@@ -134,33 +134,33 @@ public extension String {
     /// Returns the string that is uppercased the first element
     /// or empty string if `self` is empty
     func uppercasedFirst() -> String {
-        return self.first().uppercased() + String(self.characters.dropFirst())
+        return first().uppercased() + String(characters.dropFirst())
     }
 
     /// Returns the string that is lowercased the first element
     /// or empty string if `self` is empty
     func lowercasedFirst() -> String {
-        return self.first().lowercased() + String(self.characters.dropFirst())
+        return first().lowercased() + String(characters.dropFirst())
     }
     
     /// The wapper of dropFirst
     func dropFirst() -> String {
-        return String(self.characters.dropFirst())
+        return String(characters.dropFirst())
     }
     
     /// The wapper of dropFirst(n: Int)
     func dropFirst(_ n: Int) -> String {
-        return String(self.characters.dropFirst(n))
+        return String(characters.dropFirst(n))
     }
     
     /// The wapper of dropLast
     func dropLast() -> String {
-        return String(self.characters.dropLast())
+        return String(characters.dropLast())
     }
     
     /// The wapper of dropLast(n: Int)
     func dropLast(_ n: Int) -> String {
-        return String(self.characters.dropLast(n))
+        return String(characters.dropLast(n))
     }
   
     /// Remove redundant white space
@@ -171,8 +171,8 @@ public extension String {
   
     /// Returns the string that has truncated at the specified length
     func truncated(length: Int, trailing: String = "...") -> String {
-        if self.characters.count > length {
-            return self.substring(to: index(startIndex, offsetBy: length)) + trailing
+        if characters.count > length {
+            return substring(to: index(startIndex, offsetBy: length)) + trailing
         } else {
             return self
         }
@@ -180,7 +180,7 @@ public extension String {
     
     /// Returns the color if string is color name
     func toColor() -> UIColor? {
-        switch self.lowercased() {
+        switch lowercased() {
         case "black":
             return UIColor.black
         case "blue":
@@ -227,34 +227,34 @@ public extension String {
     //MARK: Check
     /// `true` if `self` is capitalized.
     func isCapitalized() -> Bool {
-        guard !self.isEmpty else { return false }
+        guard !isEmpty else { return false }
         
-        return self == self.capitalized
+        return self == capitalized
     }
     
     /// `true` if `self` is uppercased.
     func isUppercased() -> Bool {
-        guard !self.isEmpty else { return false }
+        guard !isEmpty else { return false }
         
-        return self.isOnlyComposed(characterSet: String.AsciiUppercaseSet)
+        return isOnlyComposed(characterSet: String.AsciiUppercaseSet)
     }
     
     /// `true` if `self` is lowercased.
     func isLowercased() -> Bool {
-        guard !self.isEmpty else { return false }
+        guard !isEmpty else { return false }
         
-        return self.isOnlyComposed(characterSet: String.AsciiLowercaseSet)
+        return isOnlyComposed(characterSet: String.AsciiLowercaseSet)
     }
     
     /// `true` if `self` is upper-camelized.
     func isUpperCamelized() -> Bool {
-        guard !self.isEmpty else { return false }
+        guard !isEmpty else { return false }
         
-        if let range = self.range(of: "^[A-Z]+[0-9]*[A-Za-z]*[a-z]+[\\w\\d]*",
-                                  options: .regularExpression,
-                                  range: nil, locale: nil) {
-            let count = self.distance(from: range.lowerBound, to: range.upperBound)
-            return count == self.characters.count
+        if let range = range(of: "^[A-Z]+[0-9]*[A-Za-z]*[a-z]+[\\w\\d]*",
+                             options: .regularExpression,
+                             range: nil, locale: nil) {
+            let count = distance(from: range.lowerBound, to: range.upperBound)
+            return count == characters.count
         } else {
             return false
         }
@@ -262,13 +262,13 @@ public extension String {
     
     /// `true` if `self` is lower-camelized.
     func isLowerCamelized() -> Bool {
-        guard !self.isEmpty else { return false }
+        guard !isEmpty else { return false }
         
-        if let range = self.range(of: "^[a-z]+[0-9]*[A-Za-z]*[a-z]+[\\w\\d]*",
-                                  options: .regularExpression,
-                                  range: nil, locale: nil) {
-            let count = self.distance(from: range.lowerBound, to: range.upperBound)
-            return count == self.characters.count
+        if let range = range(of: "^[a-z]+[0-9]*[A-Za-z]*[a-z]+[\\w\\d]*",
+                             options: .regularExpression,
+                             range: nil, locale: nil) {
+            let count = distance(from: range.lowerBound, to: range.upperBound)
+            return count == characters.count
         } else {
             return false
         }
@@ -276,7 +276,7 @@ public extension String {
     
     /// `true` if `self` is only composed alphabet.
     func isAlphabet() -> Bool {
-        return self.isOnlyComposed(characterSet: String.AsciiAlphabetSet)
+        return isOnlyComposed(characterSet: String.AsciiAlphabetSet)
     }
     
     /// `true` if `self` is only composed numeric.
@@ -290,9 +290,9 @@ public extension String {
     /// `true` if `self` is only composed Japanese Hiragana
     /// if you'd like to get more details, see http://unicode.org/charts/PDF/U3040.pdf
     func isHiragana() -> Bool {
-        guard !self.isEmpty else { return false }
+        guard !isEmpty else { return false }
         
-        for unicodeScalar in self.unicodeScalars {
+        for unicodeScalar in unicodeScalars {
             if !(unicodeScalar.value >= 0x3041 && unicodeScalar.value <= 0x3096) {
                 return false
             }
@@ -303,9 +303,9 @@ public extension String {
     /// `true` if `self` is only composed Japanese Katakana
     /// if you'd like to get more details, see http://unicode.org/charts/PDF/U30A0.pdf
     func isKatakana() -> Bool {
-        guard !self.isEmpty else { return false }
+        guard !isEmpty else { return false }
         
-        for unicodeScalar in self.unicodeScalars {
+        for unicodeScalar in unicodeScalars {
             if !(unicodeScalar.value >= 0x30A1 && unicodeScalar.value <= 0x30FA) {
                 return false
             }
@@ -315,9 +315,9 @@ public extension String {
     
     /// `true` if `self` is only alphabet.
     fileprivate func isOnlyComposed(characterSet set :Set<String>) -> Bool {
-        guard !self.isEmpty else { return false }
+        guard !isEmpty else { return false }
         
-        for c in self.characters {
+        for c in characters {
             if !set.contains(String(c)) {
                 return false
             }
