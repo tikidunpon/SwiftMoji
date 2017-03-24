@@ -13,6 +13,29 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Methods
 
+
+**between()**
+```swift
+"<a>foo</a>".between("<a>", "</a>") // "foo"
+"<a><a>foo</a></a>".between("<a>", "</a>") // "<a>foo</a>"
+"<a>foo".between("<a>", "</a>") // nil
+"Some strings } are very {weird}, dont you think?".between("{", "}") // "weird"
+"<a></a>".between("<a>", "</a>") // nil
+"<a>foo</a>".between("<a>", "<a>") // nil
+```
+
+**matches()**
+```swift
+let matches = "Swift Moji 9876".matches(regex: "^(.+)\\s(\\d{4})")
+
+// first is the entire capture
+matches.first // "Swift Moji 9876"
+
+// individual capture groups begin from [1]
+matches[1] // "Swift Moji"
+matches.last // "2017"
+```
+
 **first()**
 ```swift
 "abc".first() // "a"
