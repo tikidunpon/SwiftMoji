@@ -25,12 +25,12 @@ public extension String {
     
     //MARK: Search
     
-    ///  Finds the string between two bookend strings if it can be found.
+    /// Finds the string between two bookend strings if it can be found.
     ///
-    ///  - parameter lhs: The left bookend
-    ///  - parameter rhs: The right bookend
-    ///
-    ///  - returns: The string between the two bookends, or nil if the bookends cannot be found, the bookends are the same or appear contiguously.
+    /// - Parameters:
+    ///   - lhs: The left bookend
+    ///   - rhs: The left bookend
+    /// - Returns: The string between the two bookends, or nil if the bookends cannot be found, the bookends are the same or appear contiguously.
     func between(_ lhs: String, _ rhs: String) -> String? {
         guard let leftRange = range(of: lhs),
               let rightRange = range(of: rhs, options: .backwards),
@@ -38,6 +38,30 @@ public extension String {
             else { return nil }
         
         return self[leftRange.upperBound..<rightRange.lowerBound]
+    }
+    
+    
+    /// Returns matched strings for a given regular expression.
+    ///
+    /// - Parameters:
+    ///   - regex: regular expression
+    /// - Returns: matched strings, The first result[0] is the entire capture, and then individual capture groups begin from [1].
+    func matches(regex: String!) -> [String] {
+        do {
+            let regex = try NSRegularExpression(pattern: regex, options: [])
+            let nsString = self as NSString
+            let results = regex.matches(in: self, options: [], range: NSMakeRange(0, nsString.length))
+            var matches = [String]()
+            for result in results {
+                for i in 0..<result.numberOfRanges {
+                    matches.append(nsString.substring(with: result.rangeAt(i) ))
+                }
+            }
+            return matches
+        } catch let error as NSError {
+            print("invalid regex: \(error.localizedDescription)")
+            return []
+        }
     }
     
     /// Returns the first element of `self`, or `empty string` if `self` is empty.

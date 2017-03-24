@@ -31,6 +31,17 @@ class SwiftMojiTests: XCTestCase {
         XCTAssertNil("<a>foo</a>".between("<a>", "<a>"))
     }
     
+    func testMatches() {
+        XCTAssertTrue("Swift Moji 2017".matches(regex: "^(.+)\\s(\\d{4})").count == 3)
+        XCTAssertTrue("Swift Moji 2017".matches(regex: "^(.+)\\s(\\d{4})").first == "Swift Moji 2017")
+        XCTAssertTrue("Swift Moji 2017".matches(regex: "^(.+)\\s(\\d{4})")[1] == "Swift Moji")
+        XCTAssertTrue("Swift Moji 2017".matches(regex: "^(.+)\\s(\\d{4})").last == "2017")
+        XCTAssertTrue("Swift Moji 2017".matches(regex: "\\d{4}").count == 1)
+        XCTAssertTrue("Swift Moji 2017".matches(regex: "\\d{4}").first == "2017")
+        XCTAssertTrue("Swift Moji 2017".matches(regex: "^\\s").isEmpty)
+        XCTAssertTrue("".matches(regex: "\\d{4}").isEmpty)
+    }
+    
     func testFirst() {
         XCTAssert("abc".first() == "a")
         XCTAssert(" ".first() == " ")
