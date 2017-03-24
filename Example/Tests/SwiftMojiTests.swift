@@ -22,6 +22,15 @@ class SwiftMojiTests: XCTestCase {
         super.tearDown()
     }
     
+    func testBetween() {
+        XCTAssertTrue("<a>foo</a>".between("<a>", "</a>") == "foo")
+        XCTAssertTrue("<a><a>foo</a></a>".between("<a>", "</a>") == "<a>foo</a>")
+        XCTAssertTrue("Some strings } are very {weird}, dont you think?".between("{", "}") == "weird")
+        XCTAssertNil("<a>foo".between("<a>", "</a>"))
+        XCTAssertNil("<a></a>".between("<a>", "</a>"))
+        XCTAssertNil("<a>foo</a>".between("<a>", "<a>"))
+    }
+    
     func testFirst() {
         XCTAssert("abc".first() == "a")
         XCTAssert(" ".first() == " ")
