@@ -11,12 +11,9 @@ import UIKit
 
 //MARK: Constant
 private extension String {
-    static let AsciiUppercaseSet: Set<String> = Set(["A", "B", "C", "D", "E", "F", "G","H", "I", "J", "K", "L", "M", "N","O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"])
-    
-    static let AsciiLowercaseSet: Set<String> = Set(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"])
-    
-    static let AsciiAlphabetSet: Set<String> = AsciiUppercaseSet.union(AsciiLowercaseSet)
-    
+    static let AsciiUppercaseSet: Set<String> = Set("ABCDEFGHIJKLMNOPQRSTUVWXYZ".characters.map{String($0)})
+    static let AsciiLowercaseSet: Set<String> = Set("abcdefghijklmnopqrstuvwxyz".characters.map{String($0)})
+    static let AsciiAlphabetSet:  Set<String> = AsciiUppercaseSet.union(AsciiLowercaseSet)
     static let DefaultNumberFormatter = NumberFormatter()
 }
 
