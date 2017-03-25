@@ -22,6 +22,24 @@ class SwiftMojiTests: XCTestCase {
         super.tearDown()
     }
     
+    func testHiragana() {
+        let hiragana = String.hiragana()
+        XCTAssertTrue(hiragana.contains("\u{3041}"))
+        XCTAssertTrue(hiragana.contains("\u{3096}"))
+        XCTAssertTrue(hiragana.contains("な"))
+        XCTAssertFalse(hiragana.contains("\u{3040}"))
+        XCTAssertFalse(hiragana.contains("\u{3097}"))
+    }
+    
+    func testKatakana() {
+        let katakana = String.katakana()
+        XCTAssertTrue(katakana.contains("\u{30A1}"))
+        XCTAssertTrue(katakana.contains("\u{30F6}"))
+        XCTAssertTrue(katakana.contains("ナ"))
+        XCTAssertFalse(katakana.contains("\u{30A0}"))
+        XCTAssertFalse(katakana.contains("\u{30F7}"))
+    }
+    
     func testBetween() {
         XCTAssertTrue("<a>foo</a>".between("<a>", "</a>") == "foo")
         XCTAssertTrue("<a><a>foo</a></a>".between("<a>", "</a>") == "<a>foo</a>")

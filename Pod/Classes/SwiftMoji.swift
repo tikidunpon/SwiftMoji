@@ -20,7 +20,31 @@ private extension String {
 //MARK: SwiftMoji
 public extension String {
     
-    //MARK: Search
+    //MARK: Get
+    
+    /// Returns Japanese Hiragana as String see http://unicode.org/charts/PDF/U3040.pdf
+    ///
+    /// - Returns: The string of Hiragana
+    static func hiragana() -> String {
+        var str: String = ""
+        let unicodes = [Int](0x3041...0x3096)
+        unicodes.forEach { (unicode: Int) in
+            str.append(Character(UnicodeScalar(unicode)!))
+        }
+        return str
+    }
+    
+    /// Returns Japanese Katakana as String see http://unicode.org/charts/PDF/U3040.pdf
+    ///
+    /// - Returns: The string of Katakana
+    static func katakana() -> String {
+        var str: String = ""
+        let unicodes = [Int](0x30A1...0x30F6)
+        unicodes.forEach { (unicode: Int) in
+            str.append(Character(UnicodeScalar(unicode)!))
+        }
+        return str
+    }
     
     /// Finds the string between two bookend strings if it can be found.
     ///
@@ -36,7 +60,6 @@ public extension String {
         
         return self[leftRange.upperBound..<rightRange.lowerBound]
     }
-    
     
     /// Returns matched strings for a given regular expression.
     ///
