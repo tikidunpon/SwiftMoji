@@ -13,7 +13,6 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Methods
 
-
 **between()**
 ```swift
 "<a>foo</a>".between("<a>", "</a>") // "foo"
@@ -51,6 +50,18 @@ matches.last // "2017"
 "abc".last() // "c"
 ```
 
+**hiragana()**
+```swift
+String.hiragana()　
+//ぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんゔゕゖ
+```
+
+**katakana()**
+```swift
+String.katakana()　
+//ァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴヵヶ
+```
+
 **camelized()**
 ```swift
 "abc_def".camelized() // "AbcDef"
@@ -76,6 +87,11 @@ matches.last // "2017"
 **lowercasedFirst()**
 ```swift
 "ABC".lowercasedFirst() // "aBC"
+```
+**truncated()**
+```
+"Returns the truncated string".truncated(length: 10)  // "Returns th..."
+"Returns the truncated string".truncated(length: 10, trailing: "・・・")  // "Returns th・・・"
 ```
 
 **isCapitalized()**
