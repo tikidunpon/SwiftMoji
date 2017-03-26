@@ -54,7 +54,6 @@ class SwiftMojiTests: XCTestCase {
         XCTAssertTrue("Swift Moji 2017".matches(regex: "^(.+)\\s(\\d{4})").first == "Swift Moji 2017")
         XCTAssertTrue("Swift Moji 2017".matches(regex: "^(.+)\\s(\\d{4})")[1] == "Swift Moji")
         XCTAssertTrue("Swift Moji 2017".matches(regex: "^(.+)\\s(\\d{4})").last == "2017")
-        XCTAssertTrue("Swift Moji 2017".matches(regex: "\\d{4}").count == 1)
         XCTAssertTrue("Swift Moji 2017".matches(regex: "\\d{4}").first == "2017")
         XCTAssertTrue("Swift Moji 2017".matches(regex: "^\\s").isEmpty)
         XCTAssertTrue("".matches(regex: "\\d{4}").isEmpty)
@@ -96,15 +95,11 @@ class SwiftMojiTests: XCTestCase {
         XCTAssertTrue("abcDef".snakecased() == "abc_def")
         XCTAssertTrue("abcDefGhi".snakecased() == "abc_def_ghi")
         XCTAssertTrue("abcDef-Ghi".snakecased() == "abc_def_ghi")
+        XCTAssertTrue("abcDef_Ghi".snakecased() == "abc_def_ghi")
         XCTAssertTrue("abc99Def-Ghi".snakecased() == "abc99_def_ghi")
         XCTAssertTrue("abc99Def-Ghi99".snakecased() == "abc99_def_ghi99")
         XCTAssertTrue("ABCDEFG".snakecased() == "abcdefg")
-        XCTAssertTrue("ABC_DEF".snakecased() == "abc_def")
-        XCTAssertTrue("ABC-DEF".snakecased() == "abc_def")
-        XCTAssertTrue("abc-def".snakecased() == "abc_def")
         XCTAssertTrue("abc def".snakecased() == "abc_def")
-        XCTAssertTrue("UserId".snakecased()  == "user_id")
-        XCTAssertTrue("userId".snakecased()  == "user_id")
         XCTAssertTrue("userID".snakecased()  == "user_id")
         XCTAssertTrue("User-ID".snakecased() == "user_id")
         XCTAssertTrue("User-ID Type".snakecased() == "user_id_type")
@@ -174,7 +169,6 @@ class SwiftMojiTests: XCTestCase {
     
     func testIndexInt() {
         XCTAssertTrue("test".indexInt(of: "t") == 0)
-        XCTAssertTrue("test".indexInt(of: "s") == 2)
         XCTAssertTrue("test".indexInt(of: "es") == 1)
         XCTAssertTrue("test".indexInt(of: "test") == 0)
         XCTAssertTrue("test".indexInt(of: "z") == nil)
@@ -184,14 +178,15 @@ class SwiftMojiTests: XCTestCase {
         XCTAssertTrue("A".isCapitalized())
         XCTAssertTrue("Abc".isCapitalized())
         XCTAssertTrue("Abc Abc".isCapitalized())
+        
         XCTAssertFalse("abc".isCapitalized())
-        XCTAssertFalse("abc abc".isCapitalized())
         XCTAssertFalse("".isCapitalized())
     }
     
     func testIsAlphabet() {
         XCTAssertTrue("abc".isAlphabet())
         XCTAssertTrue("ABC".isAlphabet())
+        
         XCTAssertFalse("".isAlphabet())
         XCTAssertFalse(" ".isAlphabet())
         XCTAssertFalse("あ".isAlphabet())
@@ -209,8 +204,6 @@ class SwiftMojiTests: XCTestCase {
         
         XCTAssertFalse("".isNumeric())
         XCTAssertFalse(" ".isNumeric())
-        XCTAssertFalse("\n".isNumeric())
-        XCTAssertFalse("\t".isNumeric())
         XCTAssertFalse("abcde".isNumeric())
     }
     
@@ -218,7 +211,6 @@ class SwiftMojiTests: XCTestCase {
         XCTAssertTrue("A".isUppercased())
         XCTAssertTrue("ABC".isUppercased())
         XCTAssertFalse("A_B_C".isUppercased())
-        
         XCTAssertFalse("a".isUppercased())
         XCTAssertFalse("aBc".isUppercased())
         XCTAssertFalse("".isUppercased())
@@ -228,7 +220,6 @@ class SwiftMojiTests: XCTestCase {
     func testIsLowercased() {
         XCTAssertTrue("a".isLowercased())
         XCTAssertTrue("abc".isLowercased())
-        
         XCTAssertFalse("A".isLowercased())
         XCTAssertFalse("abC".isLowercased())
         XCTAssertFalse("".isLowercased())
@@ -257,7 +248,6 @@ class SwiftMojiTests: XCTestCase {
     func testIsUpperCamelized() {
         XCTAssertTrue("UserId".isUpperCamelized())
         XCTAssertTrue("UserID".isUpperCamelized())
-        XCTAssertTrue("URLString".isUpperCamelized())
         XCTAssertTrue("Class2016".isUpperCamelized())
         XCTAssertTrue("Class2016Class".isUpperCamelized())
         XCTAssertTrue("UTF8String".isUpperCamelized())
@@ -281,12 +271,9 @@ class SwiftMojiTests: XCTestCase {
     }
 
     func testIsHiragana() {
-        XCTAssertTrue("あいうえお".isHiragana())
         XCTAssertTrue("\u{3041}".isHiragana())
-        XCTAssertTrue("ぁ".isHiragana())
-        XCTAssertTrue("ゖ".isHiragana())
-        
-        XCTAssertFalse("abc".isHiragana())
+        XCTAssertTrue("\u{3096}".isHiragana())
+        XCTAssertTrue("あいうえお".isHiragana())
         XCTAssertFalse("\u{3040}".isHiragana())
         XCTAssertFalse("\u{3097}".isHiragana())
         XCTAssertFalse("".isHiragana())
@@ -296,9 +283,6 @@ class SwiftMojiTests: XCTestCase {
         XCTAssertTrue("アイウエオ".isKatakana())
         XCTAssertTrue("\u{30A1}".isKatakana())
         XCTAssertTrue("\u{30FA}".isKatakana())
-        XCTAssertTrue("ァ".isKatakana())
-        XCTAssertTrue("ヺ".isKatakana())
-        
         XCTAssertFalse("abc".isKatakana())
         XCTAssertFalse("\u{30A0}".isKatakana())
         XCTAssertFalse("\u{30FB}".isKatakana())
@@ -318,5 +302,7 @@ class SwiftMojiTests: XCTestCase {
             }
         }
     }
+    
+    
     
 }
