@@ -1,6 +1,7 @@
 # SwiftMoji
 
 [![CI Status](http://img.shields.io/travis/tikidunpon/SwiftMoji.svg?style=flat)](https://travis-ci.org/tikidunpon/SwiftMoji)
+[![Code Climate](https://codeclimate.com/github/tikidunpon/SwiftMoji/badges/gpa.svg)](https://codeclimate.com/github/tikidunpon/SwiftMoji)
 [![codecov](https://codecov.io/gh/tikidunpon/SwiftMoji/branch/master/graph/badge.svg)](https://codecov.io/gh/tikidunpon/SwiftMoji)
 [![Version](https://img.shields.io/cocoapods/v/SwiftMoji.svg?style=flat)](http://cocoapods.org/pods/SwiftMoji)
 [![License](https://img.shields.io/cocoapods/l/SwiftMoji.svg?style=flat)](http://cocoapods.org/pods/SwiftMoji)
