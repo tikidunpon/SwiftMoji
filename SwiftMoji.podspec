@@ -28,7 +28,11 @@ s.source           = { :git => "https://github.com/tikidunpon/SwiftMoji.git", :t
 
 s.platform     = :ios, '10.0'
 s.requires_arc = true
+
 s.source_files = 'Pod/Classes/**/*'
 
+s.xcconfig = {
+    'SWIFT_VERSION' => '4'
+  }
 
 end
