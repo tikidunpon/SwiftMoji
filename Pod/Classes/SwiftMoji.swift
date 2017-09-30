@@ -9,18 +9,18 @@
 import Foundation
 import UIKit
 
-//MARK: Constant
+// MARK: Constant
 private extension String {
     static let AsciiUppercaseSet: Set<String> = Set("ABCDEFGHIJKLMNOPQRSTUVWXYZ".characters.map{String($0)})
     static let AsciiLowercaseSet: Set<String> = Set("abcdefghijklmnopqrstuvwxyz".characters.map{String($0)})
-    static let AsciiAlphabetSet:  Set<String> = AsciiUppercaseSet.union(AsciiLowercaseSet)
+    static let AsciiAlphabetSet: Set<String> = AsciiUppercaseSet.union(AsciiLowercaseSet)
     static let DefaultNumberFormatter = NumberFormatter()
 }
 
-//MARK: SwiftMoji
+// MARK: SwiftMoji
 public extension String {
     
-    //MARK: Get
+    // MARK: Get
     
     /// Returns Japanese Hiragana as String see http://unicode.org/charts/PDF/U3040.pdf
     ///
@@ -70,7 +70,7 @@ public extension String {
         do {
             let regex = try NSRegularExpression(pattern: regex, options: [])
             let nsString = self as NSString
-            let results = regex.matches(in: self, options: [], range: NSMakeRange(0, nsString.length))
+            let results = regex.matches(in: self, options: [], range: NSRange(location: 0, length: nsString.length))
             var matches = [String]()
             for result in results {
                 for i in 0..<result.numberOfRanges {
@@ -109,7 +109,7 @@ public extension String {
         return String(self[beforeEndIndex])
     }
     
-    //MARK: Change
+    // MARK: Change
     /// Returns upper-camelized String
     func camelized() -> String {
         guard !isEmpty else { return self }
@@ -138,7 +138,7 @@ public extension String {
 
         let singleUnderscored = replacingOccurrences(of: "-", with: "_")
                                .replacingOccurrences(of: " ", with: "_")
-                               .replacingOccurrences(of: "_+",with: "_",
+                               .replacingOccurrences(of: "_+", with: "_",
                                 options: .regularExpression,
                                 range: nil)
         if singleUnderscored.isUppercased() {
@@ -225,50 +225,30 @@ public extension String {
     /// Returns the color if string is color name
     func toColor() -> UIColor? {
         switch lowercased() {
-        case "black":
-            return UIColor.black
-        case "blue":
-            return UIColor.blue
-        case "brown":
-            return UIColor.brown
-        case "clear":
-            return UIColor.clear
-        case "cyan":
-            return UIColor.cyan
-        case "darkgray":
-            return UIColor.darkGray
-        case "darktext":
-            return UIColor.darkText
-        case "gray":
-            return UIColor.gray
-        case "green":
-            return UIColor.green
-        case "grouptableviewbackground":
-            return UIColor.groupTableViewBackground
-        case "lightgray":
-            return UIColor.lightGray
-        case "lighttext":
-            return UIColor.lightText
-        case "magenta":
-            return UIColor.magenta
-        case "orange":
-            return UIColor.orange
-        case "purple":
-            return UIColor.purple
-        case "red":
-            return UIColor.red
-        case "white":
-            return UIColor.white
-        case "yellow":
-            return UIColor.yellow
-        case "pink":
-            return UIColor(red:1.00, green:0.75, blue:0.80, alpha:1.0)
-        default:
-            return nil
+        case "black": return UIColor.black
+        case "blue": return UIColor.blue
+        case "brown": return UIColor.brown
+        case "clear": return UIColor.clear
+        case "cyan": return UIColor.cyan
+        case "darkgray": return UIColor.darkGray
+        case "darktext": return UIColor.darkText
+        case "gray": return UIColor.gray
+        case "green": return UIColor.green
+        case "grouptableviewbackground": return UIColor.groupTableViewBackground
+        case "lightgray": return UIColor.lightGray
+        case "lighttext": return UIColor.lightText
+        case "magenta": return UIColor.magenta
+        case "orange": return UIColor.orange
+        case "purple": return UIColor.purple
+        case "red": return UIColor.red
+        case "white": return UIColor.white
+        case "yellow": return UIColor.yellow
+        case "pink": return UIColor(red:1.00, green:0.75, blue:0.80, alpha:1.0)
+        default: return nil
         }
     }
   
-    //MARK: Check
+    // MARK: Check
     /// `true` if `self` is capitalized.
     func isCapitalized() -> Bool {
         guard !isEmpty else { return false }
@@ -325,7 +305,7 @@ public extension String {
     
     /// `true` if `self` is only composed numeric.
     func isNumeric() -> Bool {
-        if let _ = String.DefaultNumberFormatter.number(from: self) {
+        if String.DefaultNumberFormatter.number(from: self) != nil {
             return true
         }
         return false
@@ -358,7 +338,7 @@ public extension String {
     }
     
     /// `true` if `self` is only alphabet.
-    fileprivate func isOnlyComposed(characterSet set :Set<String>) -> Bool {
+    fileprivate func isOnlyComposed(characterSet set: Set<String>) -> Bool {
         guard !isEmpty else { return false }
         
         for c in characters {
