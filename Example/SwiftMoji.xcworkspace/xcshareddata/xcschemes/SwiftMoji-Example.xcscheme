@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0800"
+   LastUpgradeVersion = "0900"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "05AC0366564E4D2D3CA368E9DADE6460"
+               BlueprintIdentifier = "66E50AC7C9146893E80326A77451881C"
                BuildableName = "Pods_SwiftMoji_Tests.framework"
                BlueprintName = "Pods-SwiftMoji_Tests"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AF76F9CC9EB85DB55C4DEE9569163030"
+               BlueprintIdentifier = "BAB7B73CA2E86846401A1EBA96AE2894"
                BuildableName = "Pods_SwiftMoji_Example.framework"
                BlueprintName = "Pods-SwiftMoji_Example"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -42,7 +42,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5814CEC91F4B8BB4AA6DFC87B879799A"
+               BlueprintIdentifier = "832F70C6A2535A284FCEA2438CBF7BC6"
                BuildableName = "SwiftMoji.framework"
                BlueprintName = "SwiftMoji"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -82,6 +82,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES">
       <Testables>
@@ -112,6 +113,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
