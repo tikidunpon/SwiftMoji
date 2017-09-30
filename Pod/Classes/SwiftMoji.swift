@@ -58,7 +58,7 @@ public extension String {
               lhs != rhs && leftRange.upperBound != rightRange.lowerBound
             else { return nil }
         
-        return self[leftRange.upperBound..<rightRange.lowerBound]
+      return String(self[leftRange.upperBound..<rightRange.lowerBound])
     }
     
     /// Returns matched strings for a given regular expression.
@@ -74,7 +74,7 @@ public extension String {
             var matches = [String]()
             for result in results {
                 for i in 0..<result.numberOfRanges {
-                    matches.append(nsString.substring(with: result.rangeAt(i) ))
+                  matches.append(nsString.substring(with: result.range(at: i) ))
                 }
             }
             return matches
@@ -161,7 +161,7 @@ public extension String {
     /// Returns string that has trimmed whitespace and newline that is on the left side of contents
     func trimmedLeft() -> String {
         if let range = rangeOfCharacter(from: CharacterSet.whitespacesAndNewlines.inverted) {
-            return self[range.lowerBound..<endIndex]
+          return String(self[range.lowerBound..<endIndex])
         }
         return self
     }
@@ -170,7 +170,7 @@ public extension String {
     func trimmedRight() -> String {
         if let range = rangeOfCharacter(from: CharacterSet.whitespacesAndNewlines.inverted,
                                         options: .backwards) {
-            return self[startIndex..<range.upperBound]
+          return String(self[startIndex..<range.upperBound])
         }
         return self
     }
@@ -216,7 +216,7 @@ public extension String {
     /// Returns the string that has truncated at the specified length
     func truncated(length: Int, trailing: String = "...") -> String {
         if characters.count > length {
-            return substring(to: index(startIndex, offsetBy: length)) + trailing
+            return String(self[..<index(startIndex, offsetBy: length)]) + trailing
         } else {
             return self
         }
