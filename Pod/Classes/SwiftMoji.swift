@@ -187,22 +187,22 @@ public extension String {
         return first().lowercased() + String(characters.dropFirst())
     }
     
-    /// The wapper of dropFirst
+    /// The wrapper of dropFirst
     func dropFirst() -> String {
         return String(characters.dropFirst())
     }
     
-    /// The wapper of dropFirst(n: Int)
+    /// The wrapper of dropFirst(n: Int)
     func dropFirst(_ n: Int) -> String {
         return String(characters.dropFirst(n))
     }
     
-    /// The wapper of dropLast
+    /// The wrapper of dropLast
     func dropLast() -> String {
         return String(characters.dropLast())
     }
     
-    /// The wapper of dropLast(n: Int)
+    /// The wrapper of dropLast(n: Int)
     func dropLast(_ n: Int) -> String {
         return String(characters.dropLast(n))
     }
