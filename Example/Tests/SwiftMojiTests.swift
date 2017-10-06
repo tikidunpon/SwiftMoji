@@ -132,29 +132,6 @@ class SwiftMojiTests: XCTestCase {
                       "Returns th・・・")
     }
     
-    func testToColor() {
-        XCTAssertTrue("black".toColor()! == UIColor.black)
-        XCTAssertTrue("blue".toColor()! == UIColor.blue)
-        XCTAssertTrue("brown".toColor()! == UIColor.brown)
-        XCTAssertTrue("clear".toColor()! == UIColor.clear)
-        XCTAssertTrue("cyan".toColor()! == UIColor.cyan)
-        XCTAssertTrue("darkGray".toColor()! == UIColor.darkGray)
-        XCTAssertTrue("darkText".toColor()! == UIColor.darkText)
-        XCTAssertTrue("gray".toColor()! == UIColor.gray)
-        XCTAssertTrue("green".toColor()! == UIColor.green)
-        XCTAssertTrue("groupTableviewBackground".toColor()! == UIColor.groupTableViewBackground)
-        XCTAssertTrue("lightgray".toColor()! == UIColor.lightGray)
-        XCTAssertTrue("lightText".toColor()! == UIColor.lightText)
-        XCTAssertTrue("magenta".toColor()! == UIColor.magenta)
-        XCTAssertTrue("orange".toColor()! == UIColor.orange)
-        XCTAssertTrue("purple".toColor()! == UIColor.purple)
-        XCTAssertTrue("red".toColor()! == UIColor.red)
-        XCTAssertTrue("white".toColor()! == UIColor.white)
-        XCTAssertTrue("yellow".toColor()! == UIColor.yellow)
-        XCTAssertTrue("pink".toColor()! == UIColor(red:1.00, green:0.75, blue:0.80, alpha:1.0))
-        XCTAssertTrue("abc".toColor() == nil)
-    }
-    
     func testIsCapitalized() {
         XCTAssertTrue("A".isCapitalized())
         XCTAssertTrue("Abc".isCapitalized())

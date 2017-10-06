@@ -172,6 +172,7 @@
 				607FACCE1AFB9204008FA782 /* Resources */,
 				310CB0149E8BF2016D29E40C /* [CP] Embed Pods Frameworks */,
 				603534CA51E7E15E3E4E349C /* [CP] Copy Pods Resources */,
+				6B72F2C21F87628A00C0CBEF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -325,6 +326,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftMoji_Example/Pods-SwiftMoji_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		6B72F2C21F87628A00C0CBEF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\ncd ../; swiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		8A9AD3AD47EB2EE4831C08E5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

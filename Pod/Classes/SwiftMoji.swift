@@ -183,32 +183,6 @@ public extension String {
             return self
         }
     }
-    
-    /// Returns the color if string is color name
-    func toColor() -> UIColor? {
-        switch lowercased() {
-        case "black": return UIColor.black
-        case "blue": return UIColor.blue
-        case "brown": return UIColor.brown
-        case "clear": return UIColor.clear
-        case "cyan": return UIColor.cyan
-        case "darkgray": return UIColor.darkGray
-        case "darktext": return UIColor.darkText
-        case "gray": return UIColor.gray
-        case "green": return UIColor.green
-        case "grouptableviewbackground": return UIColor.groupTableViewBackground
-        case "lightgray": return UIColor.lightGray
-        case "lighttext": return UIColor.lightText
-        case "magenta": return UIColor.magenta
-        case "orange": return UIColor.orange
-        case "purple": return UIColor.purple
-        case "red": return UIColor.red
-        case "white": return UIColor.white
-        case "yellow": return UIColor.yellow
-        case "pink": return UIColor(red:1.00, green:0.75, blue:0.80, alpha:1.0)
-        default: return nil
-        }
-    }
   
     // MARK: Check
     /// `true` if `self` is capitalized.
