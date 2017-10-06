@@ -11,8 +11,8 @@ import UIKit
 
 // MARK: Constant
 private extension String {
-    static let AsciiUppercaseSet: Set<String> = Set("ABCDEFGHIJKLMNOPQRSTUVWXYZ".characters.map{String($0)})
-    static let AsciiLowercaseSet: Set<String> = Set("abcdefghijklmnopqrstuvwxyz".characters.map{String($0)})
+    static let AsciiUppercaseSet: Set<String> = Set("ABCDEFGHIJKLMNOPQRSTUVWXYZ".map{ String($0) })
+    static let AsciiLowercaseSet: Set<String> = Set("abcdefghijklmnopqrstuvwxyz".map{ String($0) })
     static let AsciiAlphabetSet: Set<String> = AsciiUppercaseSet.union(AsciiLowercaseSet)
     static let DefaultNumberFormatter = NumberFormatter()
 }
@@ -69,12 +69,13 @@ public extension String {
     func matches(regex: String!) -> [String] {
         do {
             let regex = try NSRegularExpression(pattern: regex, options: [])
-            let nsString = self as NSString
-            let results = regex.matches(in: self, options: [], range: NSRange(location: 0, length: nsString.length))
+            let results = regex.matches(in: self, options: [], range: NSRange(location: 0, length: self.count))
             var matches = [String]()
+            
             for result in results {
                 for i in 0..<result.numberOfRanges {
-                  matches.append(nsString.substring(with: result.range(at: i) ))
+                    let range = Range.init(result.range(at: i), in: self)
+                    matches.append(String(self[range!]))
                 }
             }
             return matches
@@ -90,23 +91,16 @@ public extension String {
         return String(self[startIndex])
     }
     
+    /// Returns the second element of `self`, or `empty string` if `self` is empty
     func second() -> String {
-        guard !isEmpty else { return self }
-
-        let secondIndex = index(after: startIndex)
-        let secondIndexInt = distance(from: startIndex,
-                                           to: secondIndex)
-        
-        guard characters.count > secondIndexInt else { return "" }
-
-        return String(self[secondIndex])
+        guard !isEmpty, count >= 2 else { return "" }
+        return String(self[index(after: startIndex)])
     }
     
     /// Returns the last element of `self`, or `empty string` if `self` is empty
     func last() -> String {
         guard !isEmpty else { return self }
-        let beforeEndIndex = index(before: endIndex)
-        return String(self[beforeEndIndex])
+        return String(self[index(before: endIndex)])
     }
     
     // MARK: Change
@@ -118,18 +112,6 @@ public extension String {
               .replacingOccurrences(of: "-", with: " ")
               .capitalized
               .replacingOccurrences(of: " ", with: "")
-    }
-    
-    
-    /// Returns index as Int?
-    ///
-    /// - Parameter character: a search target character
-    /// - Returns: searched index or nil
-    func indexInt(of: String) -> Int? {
-        if let r = range(of: of) {
-            return distance(from: startIndex, to: r.lowerBound)
-        }
-        return nil
     }
     
     /// Returns snakecased string from camelized string.
@@ -161,7 +143,7 @@ public extension String {
     /// Returns string that has trimmed whitespace and newline that is on the left side of contents
     func trimmedLeft() -> String {
         if let range = rangeOfCharacter(from: CharacterSet.whitespacesAndNewlines.inverted) {
-          return String(self[range.lowerBound..<endIndex])
+          return String(self[range.lowerBound...])
         }
         return self
     }
@@ -170,7 +152,7 @@ public extension String {
     func trimmedRight() -> String {
         if let range = rangeOfCharacter(from: CharacterSet.whitespacesAndNewlines.inverted,
                                         options: .backwards) {
-          return String(self[startIndex..<range.upperBound])
+          return String(self[..<range.upperBound])
         }
         return self
     }
@@ -178,33 +160,13 @@ public extension String {
     /// Returns the string that is uppercased the first element
     /// or empty string if `self` is empty
     func uppercasedFirst() -> String {
-        return first().uppercased() + String(characters.dropFirst())
+        return first().uppercased() + String(dropFirst())
     }
 
     /// Returns the string that is lowercased the first element
     /// or empty string if `self` is empty
     func lowercasedFirst() -> String {
-        return first().lowercased() + String(characters.dropFirst())
-    }
-    
-    /// The wrapper of dropFirst
-    func dropFirst() -> String {
-        return String(characters.dropFirst())
-    }
-    
-    /// The wrapper of dropFirst(n: Int)
-    func dropFirst(_ n: Int) -> String {
-        return String(characters.dropFirst(n))
-    }
-    
-    /// The wrapper of dropLast
-    func dropLast() -> String {
-        return String(characters.dropLast())
-    }
-    
-    /// The wrapper of dropLast(n: Int)
-    func dropLast(_ n: Int) -> String {
-        return String(characters.dropLast(n))
+        return first().lowercased() + String(dropFirst())
     }
   
     /// Remove redundant white space
@@ -215,8 +177,8 @@ public extension String {
   
     /// Returns the string that has truncated at the specified length
     func truncated(length: Int, trailing: String = "...") -> String {
-        if characters.count > length {
-            return String(self[..<index(startIndex, offsetBy: length)]) + trailing
+        if count > length {
+            return String(prefix(length)) + trailing
         } else {
             return self
         }
@@ -278,7 +240,7 @@ public extension String {
                              options: .regularExpression,
                              range: nil, locale: nil) {
             let count = distance(from: range.lowerBound, to: range.upperBound)
-            return count == characters.count
+            return count == self.count
         } else {
             return false
         }
@@ -291,8 +253,7 @@ public extension String {
         if let range = range(of: "^[a-z]+[0-9]*[A-Za-z]*[a-z]+[\\w\\d]*",
                              options: .regularExpression,
                              range: nil, locale: nil) {
-            let count = distance(from: range.lowerBound, to: range.upperBound)
-            return count == characters.count
+            return count == distance(from: range.lowerBound, to: range.upperBound)
         } else {
             return false
         }
@@ -341,7 +302,7 @@ public extension String {
     fileprivate func isOnlyComposed(characterSet set: Set<String>) -> Bool {
         guard !isEmpty else { return false }
         
-        for c in characters {
+        for c in self {
             if !set.contains(String(c)) {
                 return false
             }

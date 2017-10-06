@@ -118,16 +118,6 @@ class SwiftMojiTests: XCTestCase {
         XCTAssertTrue("".lowercasedFirst()    == "")
     }
     
-    func testDropFirst() {
-        XCTAssertTrue("abc".dropFirst() == "bc")
-        XCTAssertTrue("abc".dropFirst(2) == "c")
-    }
-    
-    func testDropLast() {
-        XCTAssertTrue("abc".dropLast() == "ab")
-        XCTAssertTrue("abc".dropLast(2) == "a")
-    }
-    
     func testTruncated() {
         XCTAssertTrue("Returns the string that has trancated at the specified length".truncated(length: 10)
                       ==
@@ -163,13 +153,6 @@ class SwiftMojiTests: XCTestCase {
         XCTAssertTrue("yellow".toColor()! == UIColor.yellow)
         XCTAssertTrue("pink".toColor()! == UIColor(red:1.00, green:0.75, blue:0.80, alpha:1.0))
         XCTAssertTrue("abc".toColor() == nil)
-    }
-    
-    func testIndexInt() {
-        XCTAssertTrue("test".indexInt(of: "t") == 0)
-        XCTAssertTrue("test".indexInt(of: "es") == 1)
-        XCTAssertTrue("test".indexInt(of: "test") == 0)
-        XCTAssertTrue("test".indexInt(of: "z") == nil)
     }
     
     func testIsCapitalized() {
