@@ -55,6 +55,10 @@ class SwiftMojiTests: XCTestCase {
         XCTAssertTrue("Swift Moji 2017".matches(regex: "\\d{4}").first == "2017")
         XCTAssertTrue("Swift Moji 2017".matches(regex: "^\\s").isEmpty)
         XCTAssertTrue("".matches(regex: "\\d{4}").isEmpty)
+        
+        XCTAssertTrue("2017 2018 2019".matches(regex: "\\d{4}").first == "2017")
+        XCTAssertTrue("2017 2018 2019".matches(regex: "\\d{4}").count == 3)
+        XCTAssertTrue("2017 2018 2019".matches(regex: "\\d{4}").last == "2019")
     }
     
     func testFirst() {
