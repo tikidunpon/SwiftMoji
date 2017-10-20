@@ -133,8 +133,9 @@ public extension String {
                                                       with: replacement,
                                                       options: .regularExpression,
                                                       range: nil).lowercased()
+        
     }
-    
+
     /// Returns string that has trimmed whitespace and newline
     func trimmed() -> String {
         return trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
@@ -272,6 +273,53 @@ public extension String {
         return true
     }
     
+    /// Returns similarity of two words.
+    static func similarity(_ lhs: String, _ rhs: String) -> Double {
+        if lhs.count == 1 || rhs.count == 1 || lhs.isEmpty || rhs.isEmpty {
+            return lhs == rhs ? 1.0 : 0
+        }
+        
+        let s1 = bigramSet(lhs)
+        let s2 = bigramSet(rhs)
+        let s3 = s1.intersection(s2)
+        
+        return Double(s3.count) / Double(s1.count)
+    }
+    
+    /// Returns `self` and `to` are similar or not.
+    func isSimilar(to: String, threshold: Double = 0.6) -> Bool {
+        guard threshold > 0 else {
+            assertionFailure("threshold must be 0.1 or more")
+            return false
+        }
+        if self.count == 1 || to.count == 1 || self.isEmpty || to.isEmpty {
+            return self == to
+        }
+        
+        let s1 = String.bigramSet(self)
+        let s2 = String.bigramSet(to)
+        let s3 = s1.intersection(s2)
+        return (Double(s3.count) / Double(s1.count)) >= threshold
+    }
+    
+    private static func bigramSet(_ s: String) -> Set<String> {
+        return Set(String.charNgram(input: s, n: 2))
+    }
+    
+    /// Returns ngram array from specified input
+    static func charNgram(input: String, n: Int) -> [String] {
+        let words = input.components(separatedBy: " ")
+            .map{ $0.trimmingCharacters(in: CharacterSet(charactersIn: ",.")) }
+            .joined().characters.map{ String($0) }
+        return words.enumerated().flatMap{ (i, _) in
+            if words.indices.contains(i + n - 1) {
+                return words[i..<i+n].reduce("", +)
+            } else {
+                return nil
+            }
+        }
+    }
+    
     /// `true` if `self` is only alphabet.
     fileprivate func isOnlyComposed(characterSet set: Set<String>) -> Bool {
         guard !isEmpty else { return false }
@@ -283,5 +331,5 @@ public extension String {
         }
         return true
     }
-    
+  
 }

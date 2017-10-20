@@ -257,6 +257,33 @@ class SwiftMojiTests: XCTestCase {
         XCTAssertTrue("  abcdef".removeRedundantWhitespace() == "abcdef")
     }
     
+    func testSimilarity() {
+        XCTAssertTrue(String.similarity("", "I") == 0.0)
+        XCTAssertTrue(String.similarity("I", "I") == 1.0)
+        XCTAssertTrue(String.similarity("I", "Y") == 0.0)
+        XCTAssertTrue(String.similarity("I", "IY") == 0.0)
+        XCTAssertTrue(String.similarity("I see", "I see") == 1.0)
+        XCTAssertTrue(String.similarity("I see", "I sea") >= 0.6)
+        XCTAssertTrue(String.similarity("I see", "IC") <= 0.5)
+    }
+    
+    func testIsSimilar() {
+        XCTAssertTrue("I".isSimilar(to: "I"))
+        XCTAssertTrue("I see".isSimilar(to: "I see"))
+        XCTAssertTrue("I see".isSimilar(to: "I sea"))
+        XCTAssertTrue("I see".isSimilar(to: "see"))
+
+        XCTAssertFalse("I see".isSimilar(to: "IC"))
+        XCTAssertFalse("I see".isSimilar(to: "Icee"))
+        XCTAssertFalse("I see".isSimilar(to: "Icey"))
+        XCTAssertFalse("I see".isSimilar(to: "eye see", threshold: 0.9))
+        XCTAssertFalse("II".isSimilar(to: "YY"))
+        XCTAssertFalse("I".isSimilar(to: "Y"))
+        XCTAssertFalse("I".isSimilar(to: "IY"))
+        XCTAssertFalse("I".isSimilar(to: "YY"))
+        XCTAssertFalse("".isSimilar(to: "I"))
+    }
+
     func testSnakecasedPerformance() {
         self.measure {
             for _ in 0..<10000 {
