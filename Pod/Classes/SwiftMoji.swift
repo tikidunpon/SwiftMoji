@@ -310,7 +310,7 @@ public extension String {
     static func charNgram(input: String, n: Int) -> [String] {
         let words = input.components(separatedBy: " ")
             .map{ $0.trimmingCharacters(in: CharacterSet(charactersIn: ",.")) }
-            .joined().characters.map{ String($0) }
+            .joined().map{ String($0) }
         return words.enumerated().flatMap{ (i, _) in
             if words.indices.contains(i + n - 1) {
                 return words[i..<i+n].reduce("", +)
@@ -321,7 +321,7 @@ public extension String {
     }
     
     /// `true` if `self` is only alphabet.
-    fileprivate func isOnlyComposed(characterSet set: Set<String>) -> Bool {
+    func isOnlyComposed(characterSet set: Set<String>) -> Bool {
         guard !isEmpty else { return false }
         
         for c in self {
