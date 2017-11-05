@@ -283,6 +283,17 @@ class SwiftMojiTests: XCTestCase {
         XCTAssertFalse("I".isSimilar(to: "YY"))
         XCTAssertFalse("".isSimilar(to: "I"))
     }
+    
+    func testIsOnlyComposedString() {
+        XCTAssertTrue("   ".isOnlyComposed(charactersIn: " "))
+        XCTAssertTrue("abc".isOnlyComposed(charactersIn: "abc"))
+        XCTAssertTrue("あ".isOnlyComposed(charactersIn: "あ"))
+        
+        XCTAssertFalse("abc".isOnlyComposed(charactersIn: "a"))
+        XCTAssertFalse("あ".isOnlyComposed(charactersIn: "A"))
+        XCTAssertFalse("あい".isOnlyComposed(charactersIn: "あいう"))
+        XCTAssertFalse("あいう".isOnlyComposed(charactersIn: "あ"))
+    }
 
     func testSnakecasedPerformance() {
         self.measure {

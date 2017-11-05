@@ -11,9 +11,9 @@ import UIKit
 
 // MARK: Constant
 private extension String {
-    static let AsciiUppercaseSet: Set<String> = Set("ABCDEFGHIJKLMNOPQRSTUVWXYZ".map{ String($0) })
-    static let AsciiLowercaseSet: Set<String> = Set("abcdefghijklmnopqrstuvwxyz".map{ String($0) })
-    static let AsciiAlphabetSet: Set<String> = AsciiUppercaseSet.union(AsciiLowercaseSet)
+    static let AsciiUppercaseString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    static let AsciiLowercaseString = "abcdefghijklmnopqrstuvwxyz"
+    static let AsciiAlphabetString = "\(AsciiUppercaseString)\(AsciiLowercaseString)"
     static let DefaultNumberFormatter = NumberFormatter()
 }
 
@@ -196,15 +196,13 @@ public extension String {
     /// `true` if `self` is uppercased.
     func isUppercased() -> Bool {
         guard !isEmpty else { return false }
-        
-        return isOnlyComposed(characterSet: String.AsciiUppercaseSet)
+        return isSubset(inCharSet: CharacterSet(charactersIn: String.AsciiUppercaseString))
     }
     
     /// `true` if `self` is lowercased.
     func isLowercased() -> Bool {
         guard !isEmpty else { return false }
-        
-        return isOnlyComposed(characterSet: String.AsciiLowercaseSet)
+        return isSubset(inCharSet: CharacterSet(charactersIn: String.AsciiLowercaseString))
     }
     
     /// `true` if `self` is upper-camelized.
@@ -236,7 +234,7 @@ public extension String {
     
     /// `true` if `self` is only composed alphabet.
     func isAlphabet() -> Bool {
-        return isOnlyComposed(characterSet: String.AsciiAlphabetSet)
+        return isSubset(inCharSet: CharacterSet(charactersIn: String.AsciiAlphabetString))
     }
     
     /// `true` if `self` is only composed numeric.
@@ -320,16 +318,21 @@ public extension String {
         }
     }
     
-    /// `true` if `self` is only alphabet.
-    func isOnlyComposed(characterSet set: Set<String>) -> Bool {
+    /// `true` if `self` is only composed by input string.
+    func isOnlyComposed(charactersIn: String) -> Bool {
         guard !isEmpty else { return false }
         
-        for c in self {
-            if !set.contains(String(c)) {
-                return false
-            }
-        }
-        return true
+        let selfCharSet = CharacterSet(charactersIn: self)
+        let inCharSet = CharacterSet(charactersIn: charactersIn)
+        let resultSet = selfCharSet.symmetricDifference(inCharSet)
+        return resultSet.isEmpty
+    }
+    
+    func isSubset(inCharSet: CharacterSet) -> Bool {
+        guard !isEmpty else { return false }
+        
+        let selfCharSet = CharacterSet(charactersIn: self)
+        return selfCharSet.isSubset(of: inCharSet)
     }
   
 }
