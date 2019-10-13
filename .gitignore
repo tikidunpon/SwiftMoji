@@ -1,6 +1,11 @@
 # OS X
 .DS_Store
 
+# SwiftPM
+/.build
+/Packages
+.swiftpm/xcode
+
 # Xcode
 build/
 *.pbxuser

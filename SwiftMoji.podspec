@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
 s.name             = "SwiftMoji"
-s.version          = "0.4.0"
+s.version          = "0.5.0"
 s.summary          = "A Simple Swift String Extension"
 
 # This description is used to generate tags and improve search results.
@@ -29,10 +29,8 @@ s.source           = { :git => "https://github.com/tikidunpon/SwiftMoji.git", :t
 s.platform     = :ios, '8.0'
 s.requires_arc = true
 
-s.source_files = 'Pod/Classes/**/*'
+s.source_files = 'SwiftMoji/Classes/**/*'
 
-s.xcconfig = {
-    'SWIFT_VERSION' => '4'
-  }
+s.swift_version = '5.0'
 
 end

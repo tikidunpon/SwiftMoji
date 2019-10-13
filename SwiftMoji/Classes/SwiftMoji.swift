@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 // MARK: Constant
 private extension String {
@@ -50,7 +49,7 @@ public extension String {
     ///
     /// - Parameters:
     ///   - lhs: The left bookend
-    ///   - rhs: The left bookend
+    ///   - rhs: The right bookend
     /// - Returns: The string between the two bookends, or nil if the bookends cannot be found, the bookends are the same or appear contiguously.
     func between(_ lhs: String, _ rhs: String) -> String? {
         guard let leftRange = range(of: lhs),
@@ -309,7 +308,7 @@ public extension String {
         let words = input.components(separatedBy: " ")
             .map{ $0.trimmingCharacters(in: CharacterSet(charactersIn: ",.")) }
             .joined().map{ String($0) }
-        return words.enumerated().flatMap{ (i, _) in
+        return words.enumerated().compactMap{ (i, _) in
             if words.indices.contains(i + n - 1) {
                 return words[i..<i+n].reduce("", +)
             } else {

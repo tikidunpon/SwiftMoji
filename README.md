@@ -5,7 +5,7 @@
 [![codecov](https://codecov.io/gh/tikidunpon/SwiftMoji/branch/master/graph/badge.svg)](https://codecov.io/gh/tikidunpon/SwiftMoji)
 [![Version](https://img.shields.io/cocoapods/v/SwiftMoji.svg?style=flat)](http://cocoapods.org/pods/SwiftMoji)
 [![License](https://img.shields.io/cocoapods/l/SwiftMoji.svg?style=flat)](http://cocoapods.org/pods/SwiftMoji)
-[![Swift-3.0](https://img.shields.io/badge/Swift-4.0-blue.svg)]()
+[![Swift-5.0](https://img.shields.io/badge/Swift-5.0-blue.svg)]()
 
 ## Usage
 
