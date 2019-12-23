@@ -10,11 +10,12 @@ podfile: Example/Podfile
 before_install:
   - pod --version
   - pod install --project-directory=Example
+  - xcrun instruments -w 'iPhone 8 (13.3)' || sleep 15
 
 script:
   - pod lib lint
   - set -o pipefail
-  - xcodebuild build-for-testing test-without-building -workspace Example/SwiftMoji.xcworkspace -scheme SwiftMoji-Example -configuration Release -sdk iphonesimulator -destination "name=iPhone 11 Pro" ENABLE_TESTABILITY=YES CODE_SIGNING_REQUIRED=NO | xcpretty -c
+  - xcodebuild build-for-testing test-without-building -workspace Example/SwiftMoji.xcworkspace -scheme SwiftMoji-Example -configuration Release -sdk iphonesimulator -destination "name=iPhone 8,OS=13.3" ENABLE_TESTABILITY=YES CODE_SIGNING_REQUIRED=NO | xcpretty -c
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
