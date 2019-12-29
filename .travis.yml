@@ -21,3 +21,6 @@ script:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+
+after_failure:
+  - cat /Users/travis/Library/Developer/Xcode/DerivedData/SwiftMoji-*/Logs/Test/Test-SwiftMoji-Example-*/**/Diagnostics/SwiftMoji_Tests-*/SwiftMoji_Tests-*/Session-SwiftMoji_Tests-*.log
