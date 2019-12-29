@@ -8,6 +8,7 @@ cache: cocoapods
 podfile: Example/Podfile
 
 before_install:
+  - bundle install --path vendor/bundle
   - bundle exec pod --version
   - bundle exec pod install --project-directory=Example
   - xcrun instruments -w 'iPhone 8 (13.3)' || sleep 15
