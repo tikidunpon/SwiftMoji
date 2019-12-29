@@ -8,12 +8,12 @@ cache: cocoapods
 podfile: Example/Podfile
 
 before_install:
-  - pod --version
-  - pod install --project-directory=Example
+  - bundle exec pod --version
+  - bundle exec pod install --project-directory=Example
   - xcrun instruments -w 'iPhone 8 (13.3)' || sleep 15
 
 script:
-  - pod lib lint
+  - bundle exec pod lib lint
   - set -o pipefail
   - xcodebuild build-for-testing test-without-building -workspace Example/SwiftMoji.xcworkspace -scheme SwiftMoji-Example -configuration Release -sdk iphonesimulator -destination "name=iPhone 8,OS=13.3" ENABLE_TESTABILITY=YES CODE_SIGNING_REQUIRED=NO | xcpretty -c
 
