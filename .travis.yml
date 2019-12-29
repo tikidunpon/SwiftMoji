@@ -17,7 +17,7 @@ before_install:
 script:
   - bundle exec pod lib lint
   - set -o pipefail
-  - xcodebuild build-for-testing test-without-building -workspace Example/SwiftMoji.xcworkspace -scheme SwiftMoji-Example -configuration Release -sdk $TEST_SDK -destination "platform=iOS Simulator,name=iPhone 8,OS=13.2" ENABLE_TESTABILITY=YES CODE_SIGNING_REQUIRED=NO | xcpretty -c
+  - xcodebuild build-for-testing test-without-building -workspace Example/SwiftMoji.xcworkspace -scheme SwiftMoji-Example -configuration Release -sdk $TEST_SDK -destination "platform=iOS Simulator,name=iPhone 8,OS=13.2.2" ENABLE_TESTABILITY=YES CODE_SIGNING_REQUIRED=NO | xcpretty -c
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
